@@ -1,0 +1,274 @@
+<div class="container">
+  <div id="stepper1" class="bs-stepper">
+    <div class="bs-stepper-header">
+      <div class="step" data-target="#test-l-1">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">1</span>
+          <span class="bs-stepper-label">Account Setup</span>
+        </button>
+      </div>
+      <div class="line"></div>
+      <div class="step" data-target="#test-l-2">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">2</span>
+          <span class="bs-stepper-label">Upload Picture</span>
+        </button>
+      </div>
+      <div class="line"></div>
+      <div class="step" data-target="#test-l-3">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">3</span>
+          <span class="bs-stepper-label">Running Type</span>
+        </button>
+      </div>
+    </div>
+    <div class="bs-stepper-content">
+      <form [formGroup]="onBoardForm" (ngSubmit)="onBoardUpdate()">
+        <div id="test-l-1" class="content">
+          <div class="row align-items-center mb-3">
+            <div class="col-12 col-md-7">
+              <h6 class="title-decorative">Step One</h6>
+              <h3 class="h1">Create your account</h3>
+              <span class="lead"
+                >Let's begin by creating your account. You can always change
+                these details later</span
+              >
+            </div>
+            <!--end of col-->
+
+            <!--end of col-->
+          </div>
+          <!--end of row-->
+
+          <div class="form-row form-group">
+            <div class="col">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                id="city"
+                name="city"
+                formControlName="city"
+                placeholder="City"
+              />
+            </div>
+            <div class="col">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                id="state"
+                name="state"
+                formControlName="state"
+                placeholder="State"
+              />
+            </div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col">
+              <app-date-input [formControl]='onBoardForm.controls["dateOfBirth"]' [label]="'Date of Birth'"></app-date-input>
+            </div>
+          </div>
+          <div class="form-row form-group">
+            <div class="col">
+              <select
+                class="form-control"
+                formControlName="gender"
+                id="exampleFormControlSelect1"
+                placeholder="Gender"
+                name="gender"
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
+          <button (click)="next()" type="button" class="btn btn-primary">
+            Next
+          </button>
+        </div>
+
+        <div id="test-l-2" class="content">
+          <div class="col-12 col-md-7">
+            <h6 class="title-decorative">Step Two</h6>
+            <h3 class="h1">Upload a picture</h3>
+            <span class="lead"
+              >Add some detail to your profile to personalise it and let others
+              know who you are</span
+            >
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <input type="file" ng2FileSelect [uploader]="uploader" />
+              </div>
+
+              <div class="col-md-9" style="margin-bottom: 40px;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th width="50%">Name</th>
+                      <th>Size</th>
+                      <th>Progress</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of uploader.queue">
+                      <td>
+                        <strong>{{ item?.file?.name }}</strong>
+                      </td>
+                      <td *ngIf="uploader.options.isHTML5" nowrap>
+                        {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
+                      </td>
+                      <td *ngIf="uploader.options.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                          <div
+                            class="progress-bar"
+                            role="progressbar"
+                            [ngStyle]="{ width: item.progress + '%' }"
+                          ></div>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <span *ngIf="item.isSuccess"
+                          ><i class="glyphicon glyphicon-ok"></i
+                        ></span>
+                        <span *ngIf="item.isCancel"
+                          ><i class="glyphicon glyphicon-ban-circle"></i
+                        ></span>
+                        <span *ngIf="item.isError"
+                          ><i class="glyphicon glyphicon-remove"></i
+                        ></span>
+                      </td>
+                      <td nowrap>
+                        <button
+                          type="button"
+                          class="btn btn-success btn-xs"
+                          (click)="item.upload()"
+                          [disabled]="
+                            item.isReady || item.isUploading || item.isSuccess
+                          "
+                        >
+                          <span class="glyphicon glyphicon-upload"></span>
+                          Upload
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-warning btn-xs"
+                          (click)="item.cancel()"
+                          [disabled]="!item.isUploading"
+                        >
+                          <span class="glyphicon glyphicon-ban-circle"></span>
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-xs"
+                          (click)="item.remove()"
+                        >
+                          <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div>
+                  <div>
+                    Progress:
+                    <div class="progress">
+                      <div
+                        class="progress-bar"
+                        role="progressbar"
+                        [ngStyle]="{ width: uploader.progress + '%' }"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br /><br />
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">Response</div>
+                <div class="panel-body">
+                  <!-- {{ response }} -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button (click)="next()" type="button" class="btn btn-primary">
+            Next
+          </button>
+        </div>
+        <div id="test-l-3" class="content">
+          <div class="col-12 col-md-7">
+            <h6 class="title-decorative">Step Three</h6>
+            <h3 class="h1">Add running stats</h3>
+            <span class="lead"
+              >Select some of the options below to find best match
+              possible</span
+            >
+          </div>
+          <div class="container">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1"
+                >Avg. Pace For 3 Mile Run:</label
+              >
+              <select
+                class="form-control"
+                formControlName="pace"
+                name="pace"
+                id="exampleFormControlSelect1"
+              >
+                <option [ngValue]="6" >6</option>
+                <option [ngValue]="7">7</option>
+                <option [ngValue]="8">8</option>
+                <option [ngValue]="9">9</option>
+                <option [ngValue]="+10">+10</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1"
+                >Avg. Miles Ran Per Day:</label
+              >
+              <select
+                class="form-control"
+                formControlName="mileage"
+                id="exampleFormControlSelect1"
+                name="mileage"
+              >
+                <option [ngValue]="1">1</option>
+                <option [ngValue]="2">2</option>
+                <option [ngValue]="3">3</option>
+                <option [ngValue]="4">4</option>
+                <option [ngValue]="+5">5+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1"
+                >What time do you like to run?</label
+              >
+              <select
+                class="form-control"
+                formControlName="runtime"
+                name="skillLevel"
+                id="exampleFormControlSelect1"
+              >
+                <option value="beginner">Morning</option>
+                <option value="intermediate">Afternoon</option>
+                <option value="advanced">Evening</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-5">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,159 @@
+<div class="main-container">
+  <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item"><a href="pages-app.html">App Pages</a>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">Collection - Table</li>
+          </ol>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </nav>
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col">
+          <h1 class="h2 mb-2">Invites</h1>
+          <span>See who has invited you to run.</span>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
+  <!--end of section-->
+  <section class="flush-with-above">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="text-muted text-small">Results 1 - 8 of 8</span>
+            </div>
+            <form class="d-flex align-items-center">
+              <span class="mr-2 text-muted text-small text-nowrap">Sort by:</span>
+              <select class="custom-select">
+                <option value="old-new" selected>Invited</option>
+                <option value="new-old">Invites</option>
+              </select>
+            </form>
+          </div>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+      <div class="row">
+        <div class="col">
+          <table class="table table-borderless table-hover align-items-center">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Authorised By</th>
+                <th scope="col">Date Added</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white" *ngFor="let member of members">
+                <th scope="row">
+                  <a class="media align-items-center" href="#">
+                    <img alt="Image" src="{{member.photoUrl}}" class="avatar rounded avatar-sm" />
+                    <div class="media-body">
+                      <span class="h6 mb-0">{{member.username}}</span>
+                      <span class="text-muted">{{member.city}}</span>
+                    </div>
+                  </a>
+                </th>
+                <td>Lucy</td>
+                <td>13/12/2017</td>
+                <td>
+                  <span class="badge badge-success">Active</span>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="icon-dots-three-horizontal"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-sm">
+                      <a class="dropdown-item" href="#">Download</a>
+                      <a class="dropdown-item" href="#">Share</a>
+                      <a class="dropdown-item" href="#">Comment</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="table-divider">
+                <th></th>
+                <td></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
+  <!--end of section-->
+  <footer class="footer-short">
+    <div class="container">
+      <hr>
+      <nav class="row justify-content-between align-items-center">
+        <div class="col-auto">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#">
+                <img alt="Image" src="assets/img/logo-gray.svg" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Overview</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Documentation</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Changelog</a>
+            </li>
+          </ul>
+        </div>
+        <!--end of col-->
+        <div class="col-auto text-sm-right">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#"><i class="socicon-twitter"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#"><i class="socicon-facebook"></i></a>
+            </li>
+          </ul>
+        </div>
+        <!--end of col-->
+      </nav>
+      <!--end of row-->
+      <div class="row">
+        <div class="col">
+          <small>&copy; 2019 Medium Rare All Rights Reserved</small>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </footer>
+</div>

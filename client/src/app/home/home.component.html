@@ -1,0 +1,130 @@
+<div class="main-container">
+  <section class="bg-dark space-lg" data-jarallax data-speed="0.2">
+    <img alt="Image" src="assets/img/photo-road.jpg" class="bg-image position-absolute opacity-20" />
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-12 col-md-6 col-lg-5 section-intro">
+          <h1 class="display-3">Find a running partner</h1>
+          <span class="lead">
+            A community of devoted runners, passionate about running and life. Ready to find your accountability partner?
+          </span>
+        </div>
+        <!--end of col-->
+        <div class="col-12 col-md-6 col-lg-5">
+          <div class="card">
+            <div class="card-body">
+              <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <div class="form-group">
+                  <label for="exampleInputUsername">Username</label>
+                  <app-text-input [formControl]="registerForm.controls['username']" [label]='"Username"'></app-text-input>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail">Password</label>
+                  <app-text-input [formControl]="registerForm.controls['password']" [label]='"Password"' [type]="'password'"></app-text-input>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword">Confirm Password</label>
+                  <app-text-input [formControl]="registerForm.controls['confirmPassword']" [label]='"Confirm Password"' [type]="'password'"></app-text-input>
+                </div>
+                <div class="mb-3">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" value="agree" name="agree-terms" id="check-agree">
+                    <label class="custom-control-label text-small" for="check-agree">I agree to the <a href="#">Terms &amp; Conditions</a>
+                    </label>
+                  </div>
+                </div>
+                <button type="submit" [disabled]="!registerForm.valid" class="btn btn-lg btn-success btn-block">Sign up for Wingman</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
+  <section *ngIf="registerMode" class="space-lg pt-0">
+    <img alt="Image" src="assets/img/graphic-bg-clouds-1.png" class="bg-image" />
+    <div class="container">
+      <div class="row justify-content-center space-lg">
+        <div class="col-12 col-md-9 col-lg-8 text-center">
+          <h1 class="display-3">Ready, Set, Grow.</h1>
+          <span class="lead">
+            A robust suite of styled components, powered by Bootstrap 4. Take the design of your website or webapp up a notch.
+          </span>
+          <a href="#" class="btn btn-success btn-lg">Get started now</a>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+          <div class="video-cover rounded shadow">
+            <img alt="Image" src="assets/img/photo-man-whiteboard.jpg" class="bg-image" />
+            <div class="video-play-icon">
+              <i class="icon-controller-play"></i>
+            </div>
+          </div>
+          <!--end of video cover-->
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
+  <section class="space-lg">
+    <div class="container">
+      <ul class="feature-list feature-list-xlg">
+        <li class="row align-items-center justify-content-around">
+          <div class="col-12 col-md-6 order-md-2">
+            <img alt="Image" class="img-fluid rounded" src="assets/img/photo-woman-laptop.jpg" />
+          </div>
+          <!--end of col-->
+          <div class="col-12 col-md-6 col-lg-5 text-lg-center order-md-1">
+            <i class="icon-folder-music text-teal display-3"></i>
+            <h3 class="h1">Match up with the perfect running partner.</h3>
+            <p class="lead">
+              Find other runners based off pace and distance. Never run alone and be competitive.
+            </p>
+            <a href="#">Compare plans and features &rsaquo;</a>
+          </div>
+          <!--end of col-->
+        </li>
+        <!--end of row-->
+        <li class="row align-items-center justify-content-around">
+          <div class="col-12 col-md-6 order-1">
+            <img alt="Image" class="img-fluid rounded" src="assets/img/photo-man-book.jpg" />
+          </div>
+          <!--end of col-->
+          <div class="col-12 col-md-6 col-lg-5 text-lg-center order-2">
+            <i class="icon-images text-red display-3"></i>
+            <h3 class="h1">Start a running group.</h3>
+            <p class="lead">
+              Whether you are a grizzled ultra-marathoner or a complete beginner, lead the pack.
+            </p>
+            <a href="#">View the detailed overview &rsaquo;</a>
+          </div>
+          <!--end of col-->
+        </li>
+        <!--end of row-->
+        <li class="row align-items-center justify-content-around">
+          <div class="col-12 col-md-6 order-md-2">
+            <img alt="Image" class="img-fluid rounded" src="assets/img/photo-woman-sand.jpg" />
+          </div>
+          <!--end of col-->
+          <div class="col-12 col-md-6 col-lg-5 text-lg-center order-md-1">
+            <i class="icon-drop text-purple display-3"></i>
+            <h3 class="h1">No annoying ads or intrusive data collection.</h3>
+            <p class="lead">
+              Delete your direct messages and share as little info as you want. Running is freedom and so is this platform.
+            </p>
+            <a href="#">Tell me more &rsaquo;</a>
+          </div>
+          <!--end of col-->
+        </li>
+        <!--end of row-->
+      </ul>
+    </div>
+    <!--end of container-->
+  </section>

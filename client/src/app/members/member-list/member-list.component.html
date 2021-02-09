@@ -1,0 +1,236 @@
+<div class="main-container">
+  <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item"><a href="pages-app.html">Find People</a>
+            </li>
+          </ol>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </nav>
+  <section class="space-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-9 mb-1 order-md-2">
+          <div class="card card-sm">
+            <div class="card-header bg-secondary d-flex justify-content-between align-items-center">
+              <div>
+                <h6>Active Runners</h6>
+              </div>
+              <form form="ngForm" (change)="loadMembers()" class="d-flex align-items-center">
+                <span class="mr-2 text-muted text-small text-nowrap">Sort by:</span>
+                <select class="custom-select" name="orderby" [(ngModel)]="userParams.orderBy">
+                  <option value="lastActive" selected>Last Active</option>
+                  <option value="created">Newest</option>
+                </select>
+              </form>
+            </div>
+            <div class="list-group list-group-flush">
+
+              <a class="list-group-item list-group-item-action" [routerLink]="['/members/', member.userName]" routerLinkActive="router-link-active" *ngFor="let member of members">
+                <div class="media">
+                  <img alt="Image" src="{{member.photoUrl}}" class="avatar" />
+                  <div class="media-body">
+                    <div>
+                      <span class="text-muted text-small">{{member.city}}, {{member.state}}</span>
+                      <h5 class="h6 mb-1">{{member.userName}}
+                        <span *ngIf="(presence.onlineUsers$ | async).includes(member.userName)" class="badge badge-indicator badge-success">&nbsp;</span>
+                      </h5>
+                      <ul class="list-inline text-small text-muted">
+                        <li class="list-inline-item"><span class="badge badge-primary">{{member.pace}} Minute Pace</span></li>
+                        <li class="list-inline-item"><span class="badge badge-primary">{{member.mileage}} Miles Per Day</span></li>
+                        <li class="list-inline-item">
+                          <small>Last Online: {{member.lastActive | date }}</small>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <pagination 
+              [boundaryLinks]="true" 
+              [totalItems]="pagination?.totalItems"
+              [itemsPerPage]="pagination?.itemsPerPage"
+              [(ngModel)]="pagination.currentPage"
+              (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;" 
+              nextText="&rsaquo;" 
+              firstText="&laquo;" 
+              lastText="&raquo;">
+            </pagination>
+          </div>
+        </div>
+        <!--end of col-->
+        <div class="col-12 col-md-3 order-md-1">
+          <div class="card">
+            <div class="card-body">
+              <form form="ngForm" (ngSubmit)="loadMembers()" autocomplete="off">
+                <input class="form-control" placeholder="Search" type="search" name="search-conversations" />
+                <h5 class="mt-2">Filter By:</h5>
+                <h5 class="mt-2">Gender</h5>
+                <div class="checkbox">
+                  <label><input type="radio" value="male" name="gender" [(ngModel)]="userParams.gender"> Male</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="radio" value="female" name="gender" [(ngModel)]="userParams.gender"> Female</label>
+                </div>
+                
+            <h5 class="card-title mt-2">Age range</h5>
+            <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="minAge">Min</label>
+              <input id="minAge" class="form-control" placeholder="18" type="number" name="minAge" [(ngModel)]="userParams.minAge">
+            </div>
+            <div class="form-group text-right col-md-6">
+              <label for="maxAge">Max</label>
+              <input id="maxAge" class="form-control" placeholder="99" type="number" name="maxAge"[(ngModel)]="userParams.maxAge">
+            </div>
+            </div> <!-- form-row.// -->
+            <button type="submit" class="btn btn-block btn-primary">Apply</button>
+            <button type="reset" class="btn btn-block btn-info">Reset</button>
+          </form>
+            </div>
+          </div>
+          <div class="card card-sm">
+            <div class="card-header">
+              <span class="h6">Categories</span>
+            </div>
+            <div class="list-group list-group-flush">
+
+              <a class="list-group-item d-flex justify-content-between" href="#">
+                <div>
+                  <i class="icon-area-graph mr-1"></i>
+                  <span>Analytics</span>
+                </div>
+                <div>
+                  <i class="icon-chevron-right"></i>
+                </div>
+              </a>
+
+              <a class="list-group-item d-flex justify-content-between" href="#">
+                <div>
+                  <i class="icon-power-plug mr-1"></i>
+                  <span>API Integration</span>
+                </div>
+                <div>
+                  <i class="icon-chevron-right"></i>
+                </div>
+              </a>
+
+              <a class="list-group-item d-flex justify-content-between" href="#">
+                <div>
+                  <i class="icon-credit-card mr-1"></i>
+                  <span>Billing</span>
+                </div>
+                <div>
+                  <i class="icon-chevron-right"></i>
+                </div>
+              </a>
+
+              <a class="list-group-item d-flex justify-content-between" href="#">
+                <div>
+                  <i class="icon-code mr-1"></i>
+                  <span>Development</span>
+                </div>
+                <div>
+                  <i class="icon-chevron-right"></i>
+                </div>
+              </a>
+
+              <a class="list-group-item d-flex justify-content-between" href="#">
+                <div>
+                  <i class="icon-shield mr-1"></i>
+                  <span>Security</span>
+                </div>
+                <div>
+                  <i class="icon-chevron-right"></i>
+                </div>
+              </a>
+
+              <a class="list-group-item d-flex justify-content-between" href="#">
+                <div>
+                  <i class="icon-folder mr-1"></i>
+                  <span>Storage</span>
+                </div>
+                <div>
+                  <i class="icon-chevron-right"></i>
+                </div>
+              </a>
+
+            </div>
+          </div>
+          <div class="card card-borderless bg-secondary">
+            <a class="card-body" href="#">
+              <div class="d-flex justify-content-between mb-3">
+                <img alt="Image" src="assets/img/logo-w-gradient.svg" />
+                <span class="title-decorative">Sponsor</span>
+              </div>
+              <span class="h6">A robust suite of styled elements and pages</span>
+            </a>
+          </div>
+          <!-- end card -->
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
+  <!--end of section-->
+  <footer class="footer-short">
+    <div class="container">
+      <hr>
+      <nav class="row justify-content-between align-items-center">
+        <div class="col-auto">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#">
+                <img alt="Image" src="assets/img/logo-gray.svg" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Overview</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Documentation</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Changelog</a>
+            </li>
+          </ul>
+        </div>
+        <!--end of col-->
+        <div class="col-auto text-sm-right">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#"><i class="socicon-twitter"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#"><i class="socicon-facebook"></i></a>
+            </li>
+          </ul>
+        </div>
+        <!--end of col-->
+      </nav>
+      <!--end of row-->
+      <div class="row">
+        <div class="col">
+          <small>&copy; 2019 Medium Rare All Rights Reserved</small>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </footer>

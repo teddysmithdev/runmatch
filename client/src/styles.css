@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("assets/css/theme.css");
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
+@import '~ngx-toastr/toastr.css';
+
+#toast-container > div {
+    opacity:1;
+}
+
+
