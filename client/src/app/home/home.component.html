@@ -33,7 +33,7 @@
                     </label>
                   </div>
                 </div>
-                <button type="submit" [disabled]="!registerForm.valid" class="btn btn-lg btn-success btn-block">Sign up for Wingman</button>
+                <button type="submit" [disabled]="!registerForm.valid" class="btn btn-lg btn-success btn-block">Sign up for RunMatch</button>
               </form>
             </div>
           </div>
@@ -73,58 +73,128 @@
     </div>
     <!--end of container-->
   </section>
-  <section class="space-lg">
+  <section>
     <div class="container">
-      <ul class="feature-list feature-list-xlg">
-        <li class="row align-items-center justify-content-around">
-          <div class="col-12 col-md-6 order-md-2">
-            <img alt="Image" class="img-fluid rounded" src="assets/img/photo-woman-laptop.jpg" />
+      <div class="row justify-content-between mb-5">
+        <div class="col-auto">
+          <h3>Featured Items</h3>
+        </div>
+        <!--end of col-->
+        <div class="col-auto">
+          <a href="#" class="btn btn-outline-primary">View all</a>
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+      <ul class="row feature-list feature-list-sm">
+
+        <li class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <a href="#">
+              <img class="card-img-top" src="assets/img/graphic-product-sidekick.jpg" alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <a href="#">
+                <h4 class="card-title">South End Running Club</h4>
+                <p class="card-text text-body">Charlotte, NC</p>
+              </a>
+            </div>
+            <div class="card-footer card-footer-borderless d-flex justify-content-between">
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-heart"></i> 221</li>
+                  <li class="list-inline-item"><i class="icon-message"></i> 14</li>
+                </ul>
+              </div>
+              <div class="dropup">
+                <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="SidekickButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="icon-dots-three-horizontal"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="SidekickButton">
+                  <a class="dropdown-item" href="#">Save</a>
+                  <a class="dropdown-item" href="#">Share</a>
+                  <a class="dropdown-item" href="#">Comment</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Report</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--end of col-->
-          <div class="col-12 col-md-6 col-lg-5 text-lg-center order-md-1">
-            <i class="icon-folder-music text-teal display-3"></i>
-            <h3 class="h1">Match up with the perfect running partner.</h3>
-            <p class="lead">
-              Find other runners based off pace and distance. Never run alone and be competitive.
-            </p>
-            <a href="#">Compare plans and features &rsaquo;</a>
-          </div>
-          <!--end of col-->
         </li>
-        <!--end of row-->
-        <li class="row align-items-center justify-content-around">
-          <div class="col-12 col-md-6 order-1">
-            <img alt="Image" class="img-fluid rounded" src="assets/img/photo-man-book.jpg" />
+        <!--end of col-->
+
+        <li class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <a href="#">
+              <img class="card-img-top" src="assets/img/graphic-product-pitstop.jpg" alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <a href="#">
+                <h4 class="card-title">Mint Hill Running Club</h4>
+                <p class="card-text text-body">Charlotte, NC</p>
+              </a>
+            </div>
+            <div class="card-footer card-footer-borderless d-flex justify-content-between">
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-heart"></i> 90</li>
+                  <li class="list-inline-item"><i class="icon-message"></i> 34</li>
+                </ul>
+              </div>
+              <div class="dropup">
+                <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="PitstopButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="icon-dots-three-horizontal"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="PitstopButton">
+                  <a class="dropdown-item" href="#">Save</a>
+                  <a class="dropdown-item" href="#">Share</a>
+                  <a class="dropdown-item" href="#">Comment</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Report</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--end of col-->
-          <div class="col-12 col-md-6 col-lg-5 text-lg-center order-2">
-            <i class="icon-images text-red display-3"></i>
-            <h3 class="h1">Start a running group.</h3>
-            <p class="lead">
-              Whether you are a grizzled ultra-marathoner or a complete beginner, lead the pack.
-            </p>
-            <a href="#">View the detailed overview &rsaquo;</a>
-          </div>
-          <!--end of col-->
         </li>
-        <!--end of row-->
-        <li class="row align-items-center justify-content-around">
-          <div class="col-12 col-md-6 order-md-2">
-            <img alt="Image" class="img-fluid rounded" src="assets/img/photo-woman-sand.jpg" />
+        <!--end of col-->
+
+        <li class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+            <a href="#">
+              <img class="card-img-top" src="assets/img/graphic-product-pipeline.jpg" alt="Card image cap">
+            </a>
+            <div class="card-body">
+              <a href="#">
+                <h4 class="card-title">Mooresville Running Club</h4>
+                <p class="card-text text-body">Mooresville, NC</p>
+              </a>
+            </div>
+            <div class="card-footer card-footer-borderless d-flex justify-content-between">
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-heart"></i> 84</li>
+                  <li class="list-inline-item"><i class="icon-message"></i> 25</li>
+                </ul>
+              </div>
+              <div class="dropup">
+                <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="pipeline.jsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="icon-dots-three-horizontal"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="pipeline.jsButton">
+                  <a class="dropdown-item" href="#">Save</a>
+                  <a class="dropdown-item" href="#">Share</a>
+                  <a class="dropdown-item" href="#">Comment</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Report</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <!--end of col-->
-          <div class="col-12 col-md-6 col-lg-5 text-lg-center order-md-1">
-            <i class="icon-drop text-purple display-3"></i>
-            <h3 class="h1">No annoying ads or intrusive data collection.</h3>
-            <p class="lead">
-              Delete your direct messages and share as little info as you want. Running is freedom and so is this platform.
-            </p>
-            <a href="#">Tell me more &rsaquo;</a>
-          </div>
-          <!--end of col-->
         </li>
-        <!--end of row-->
+        <!--end of col-->
+
       </ul>
+      <!--end of row-->
     </div>
     <!--end of container-->
   </section>

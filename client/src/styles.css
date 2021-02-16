@@ -4,8 +4,15 @@
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
 @import '~ngx-toastr/toastr.css';
 
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
 #toast-container > div {
     opacity:1;
 }
+
+#logo-text {
+    font-family: "Pacifico", cursive;
+    font-size: 2rem;
+  }
 
 
