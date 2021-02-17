@@ -77,26 +77,26 @@
     <div class="container">
       <div class="row justify-content-between mb-5">
         <div class="col-auto">
-          <h3>Featured Items</h3>
+          <h3>Featured Clubs</h3>
         </div>
         <!--end of col-->
         <div class="col-auto">
-          <a href="#" class="btn btn-outline-primary">View all</a>
+          <a href="#" class="btn btn-outline-primary" [routerLink]="['/clubs']" routerLinkActive="router-link-active" >View all</a>
         </div>
         <!--end of col-->
       </div>
       <!--end of row-->
       <ul class="row feature-list feature-list-sm">
 
-        <li class="col-12 col-md-6 col-lg-4">
+        <li class="col-12 col-md-6 col-lg-4" *ngFor="let club of clubs">
           <div class="card">
-            <a href="#">
+            <a [routerLink]="['/clubs', club.id]">
               <img class="card-img-top" src="assets/img/graphic-product-sidekick.jpg" alt="Card image cap">
             </a>
             <div class="card-body">
-              <a href="#">
-                <h4 class="card-title">South End Running Club</h4>
-                <p class="card-text text-body">Charlotte, NC</p>
+              <a [routerLink]="['/clubs', club.id]">
+                <h4 class="card-title">{{club.name}}</h4>
+                <p class="card-text text-body">{{club.city}}, {{club.state}}</p>
               </a>
             </div>
             <div class="card-footer card-footer-borderless d-flex justify-content-between">
@@ -123,74 +123,8 @@
         </li>
         <!--end of col-->
 
-        <li class="col-12 col-md-6 col-lg-4">
-          <div class="card">
-            <a href="#">
-              <img class="card-img-top" src="assets/img/graphic-product-pitstop.jpg" alt="Card image cap">
-            </a>
-            <div class="card-body">
-              <a href="#">
-                <h4 class="card-title">Mint Hill Running Club</h4>
-                <p class="card-text text-body">Charlotte, NC</p>
-              </a>
-            </div>
-            <div class="card-footer card-footer-borderless d-flex justify-content-between">
-              <div class="text-small">
-                <ul class="list-inline">
-                  <li class="list-inline-item"><i class="icon-heart"></i> 90</li>
-                  <li class="list-inline-item"><i class="icon-message"></i> 34</li>
-                </ul>
-              </div>
-              <div class="dropup">
-                <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="PitstopButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="icon-dots-three-horizontal"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="PitstopButton">
-                  <a class="dropdown-item" href="#">Save</a>
-                  <a class="dropdown-item" href="#">Share</a>
-                  <a class="dropdown-item" href="#">Comment</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Report</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
+        
         <!--end of col-->
-
-        <li class="col-12 col-md-6 col-lg-4">
-          <div class="card">
-            <a href="#">
-              <img class="card-img-top" src="assets/img/graphic-product-pipeline.jpg" alt="Card image cap">
-            </a>
-            <div class="card-body">
-              <a href="#">
-                <h4 class="card-title">Mooresville Running Club</h4>
-                <p class="card-text text-body">Mooresville, NC</p>
-              </a>
-            </div>
-            <div class="card-footer card-footer-borderless d-flex justify-content-between">
-              <div class="text-small">
-                <ul class="list-inline">
-                  <li class="list-inline-item"><i class="icon-heart"></i> 84</li>
-                  <li class="list-inline-item"><i class="icon-message"></i> 25</li>
-                </ul>
-              </div>
-              <div class="dropup">
-                <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="pipeline.jsButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="icon-dots-three-horizontal"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="pipeline.jsButton">
-                  <a class="dropdown-item" href="#">Save</a>
-                  <a class="dropdown-item" href="#">Share</a>
-                  <a class="dropdown-item" href="#">Comment</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Report</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
         <!--end of col-->
 
       </ul>

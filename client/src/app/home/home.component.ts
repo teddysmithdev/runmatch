@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Club } from '../_models/club';
 import { AccountService } from '../_services/account.service';
+import { ClubService } from '../_services/club.service';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +14,17 @@ import { AccountService } from '../_services/account.service';
 export class HomeComponent implements OnInit {
   registerForm: FormGroup;
   registerMode = false;
+  clubs: Club[]
 
-  constructor(private accountService: AccountService, private router: Router, private toastr: ToastrService) { }
+  constructor(
+    private accountService: AccountService, 
+    private router: Router, 
+    private toastr: ToastrService,
+    private clubService: ClubService) { }
 
   ngOnInit() {
     this.initializeForm();
+    this.getClubs();
   }
 
   initializeForm() {
@@ -42,5 +50,15 @@ export class HomeComponent implements OnInit {
       this.toastr.warning(error.error, "Error!")
     })
   }
+
+  getClubs() {
+    this.clubService.getClubs().subscribe(e => {
+      this.clubs = e
+    }, error => {
+      this.toastr.error(error);
+    })
+  }
+
+
 
 }
