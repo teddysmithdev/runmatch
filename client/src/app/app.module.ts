@@ -35,6 +35,8 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ClubListComponent } from './clubs/club-list/club-list.component';
 import { ClubDetailComponent } from './clubs/club-detail/club-detail.component';
 import { ClubCreateComponent } from './clubs/club-create/club-create.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 @NgModule({
@@ -80,7 +82,8 @@ import { ClubCreateComponent } from './clubs/club-create/club-create.component';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
