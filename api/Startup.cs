@@ -120,7 +120,7 @@ namespace API
             });
             app.UseRouting();
             app.UseAuthentication();
-            app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:4200"));
+            app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://localhost:4200"));
             app.UseAuthorization();
             app.UseDefaultFiles();
             app.UseStaticFiles();
