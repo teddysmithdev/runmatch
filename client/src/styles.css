@@ -4,15 +4,19 @@
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
 @import '~ngx-toastr/toastr.css';
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
 #toast-container > div {
     opacity:1;
 }
 
 #logo-text {
-    font-family: "Roboto", sans-serif;
+    font-family: "Jua", sans-serif;
     font-size: 2rem;
   }
+
+#logo-green {
+    color: #02B875;
+}
 
 
