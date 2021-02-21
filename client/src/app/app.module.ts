@@ -37,6 +37,7 @@ import { ClubDetailComponent } from './clubs/club-detail/club-detail.component';
 import { ClubCreateComponent } from './clubs/club-create/club-create.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './_guards/auth.guard';
+import { FooterComponent } from './home/footer/footer.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { AuthGuard } from './_guards/auth.guard';
       MemberMessagesComponent,
       ClubListComponent,
       ClubDetailComponent,
-      ClubCreateComponent
+      ClubCreateComponent,
+      FooterComponent
    ],
   imports: [
     BrowserModule,

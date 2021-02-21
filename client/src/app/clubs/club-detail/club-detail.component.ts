@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser'
 import { ToastrService } from 'ngx-toastr';
 import { Club } from 'src/app/_models/club';
 import { Event } from 'src/app/_models/event';
@@ -19,11 +20,13 @@ export class ClubDetailComponent implements OnInit {
   constructor(private clubService: ClubService, 
     private route: ActivatedRoute, 
     private toastr: ToastrService,
-    private eventService: EventService) { }
+    private eventService: EventService,
+    private titleService: Title) { }
 
   ngOnInit() {
     this.getClub();
     this.getEvents();
+    this.titleService.setTitle(this.club.name);
   }
 
   getClub() {

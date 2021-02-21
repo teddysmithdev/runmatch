@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   registerForm: FormGroup;
   registerMode = false;
   clubs: Club[]
+  validationErrors: string[] = [];
 
   constructor(
     private accountService: AccountService, 
@@ -47,7 +48,8 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl('/onboard');
       this.toastr.success("Success, You are registered!")
     }, error => {
-      this.toastr.warning(error.error, "Error!")
+      console.log(error.error)
+      this.validationErrors = error.error;
     })
   }
 

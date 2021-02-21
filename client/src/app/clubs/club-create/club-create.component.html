@@ -262,6 +262,13 @@
                 >
                 </dl-date-time-picker>
             </div>
+            <div class="row" *ngIf="validationErrors.length > 0">
+              <ul class="text-danger">
+                  <li *ngFor="let error of validationErrors">
+                      {{error}}
+                  </li>
+              </ul>
+            </div>
             <button type="submit" class="btn btn-primary mt-5">Submit</button>
           </div>
         </form>

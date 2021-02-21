@@ -5,15 +5,6 @@
           <form class="mb-4">
             <input class="form-control" placeholder="Search" type="text" name="search-table" />
           </form>
-          <nav class="nav flex-md-column">
-            <a href="#" class="nav-link active">All</a>
-            <a href="#" class="nav-link">Health &amp; Fitness</a>
-            <a href="#" class="nav-link">Lifestyle</a>
-            <a href="#" class="nav-link">Music</a>
-            <a href="#" class="nav-link">Technology</a>
-            <a href="#" class="nav-link">Productivity</a>
-            <a href="#" class="nav-link">Shopping</a>
-          </nav>
         </div>
         <!--end of col-->
         <div class="col">
@@ -78,27 +69,14 @@
         <!--end of col-->
         <div class="col-lg-3">
           <div data-sticky="top">
-            <div class="card card-borderless bg-secondary">
-              <a class="card-body">
-                <div class="d-flex justify-content-between mb-3">
-                  <img alt="Image" src="assets/img/logo-w-gradient.svg" />
-                
-                </div>
-                <span class="h6">You don't have to be an elite runner to start a running club.</span>
-                <button [routerLink]='["/club-create"]' class="btn btn-primary">Start a running club</button>
-              </a>
-            </div>
-            <!-- end card -->
             <div class="card">
               <div class="card-body">
-                <h6>Never miss an update ✌</h6>
-                <form>
+                <h6>Can't find a club? Start one. ✌</h6>
+               
                   <div class="form-group mb-2">
-                    <input type="email" placeholder="Email Address" name="subscribeEmail" class="form-control" />
-                    <small>No spam, we promise.</small>
                   </div>
-                  <button type="submit" class="btn btn-block btn-primary">Subscribe</button>
-                </form>
+                  <button type="submit" [routerLink]='["/club-create"]' class="btn btn-block btn-primary">Start a running club</button>
+              
               </div>
             </div>
           </div>

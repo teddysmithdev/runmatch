@@ -18,6 +18,7 @@ export class ClubCreateComponent implements OnInit {
   clubCreateForm: FormGroup;
   user: User;
   baseUrl = environment.apiUrl;
+  validationErrors: string[];
 
   constructor(
     private clubService: ClubService, 
@@ -42,7 +43,7 @@ export class ClubCreateComponent implements OnInit {
       events: this.fb.group({
         title: ['', Validators.required],
         location: ['', Validators.required],
-        date: ['', Validators.required]
+        date: [null, Validators.required]
       })
     })
   }
@@ -59,7 +60,8 @@ export class ClubCreateComponent implements OnInit {
         this.router.navigate(["/members"]);
       },
       (error) => {
-        console.log(error);
+        this.toastr.error('Error')
+        this.validationErrors = error;
       }
     );
   }

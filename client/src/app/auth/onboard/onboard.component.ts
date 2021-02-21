@@ -28,6 +28,8 @@ export class OnboardComponent implements OnInit {
   currentMain: Photo;
   baseUrl = environment.apiUrl;
   bsConfig: Partial<BsDatepickerConfig>;
+  response: string;
+  validationErrors: string[] = [];
 
   constructor(
     private accountService: AccountService, 
@@ -76,7 +78,11 @@ export class OnboardComponent implements OnInit {
       removeAfterUpload: true,
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024
+
     });
+
+    this.response = '';
+
 
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
@@ -94,6 +100,8 @@ export class OnboardComponent implements OnInit {
          }
       }
     }
+    this.uploader.response.subscribe(res => this.response = "Photo uploaded. Success!");
+    
   }
 
   deletePhoto(photoId: number) {
@@ -110,7 +118,8 @@ export class OnboardComponent implements OnInit {
         this.router.navigate(["/members"]);
       },
       (error) => {
-        console.log(error);
+        this.validationErrors = error;
+        this.toastr.error('Error')
       }
     );
   }
