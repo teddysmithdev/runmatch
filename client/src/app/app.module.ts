@@ -79,7 +79,7 @@ import { FooterComponent } from './home/footer/footer.component';
     NgxSpinnerModule,
     FileUploadModule,
     FontAwesomeModule,
-    BsDatepickerModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

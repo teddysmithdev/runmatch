@@ -8,7 +8,7 @@ import { BsDatepickerConfig } from "ngx-bootstrap/datepicker";
 import Stepper from "bs-stepper";
 import { AccountService } from 'src/app/_services/account.service';
 import { MemberService } from 'src/app/_services/member.service';
-import { take } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -30,6 +30,7 @@ export class OnboardComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   response: string;
   validationErrors: string[] = [];
+  ipAddress:any;
 
   constructor(
     private accountService: AccountService, 
@@ -51,6 +52,7 @@ export class OnboardComponent implements OnInit {
       containerClass: "theme-blue",
     };
     this.initializeForm();
+    this.getIP();
   }
 
   initializeForm() {
@@ -63,6 +65,7 @@ export class OnboardComponent implements OnInit {
       mileage: ['3', Validators.required],
       runtime: ['Morning', Validators.required]
     })
+    
   }
 
   next() {
@@ -123,6 +126,15 @@ export class OnboardComponent implements OnInit {
       }
     );
   }
+
+  getIP() {  
+    this.accountService.getIPAddress().subscribe((res:any)=>{  
+      this.onBoardForm.patchValue({
+        city: res.city,
+        state: res.region,
+      });
+    })
+  }  
 
   setMainPhoto(photo: Photo) {
     this.memberService.setMainPhoto(photo.id).subscribe(() => {

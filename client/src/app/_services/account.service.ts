@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
@@ -11,7 +11,7 @@ import { PresenceService } from './presence.service';
   providedIn: 'root'
 })
 export class AccountService {
-baseUrl = environment.apiUrl
+baseUrl = environment.apiUrl;
 private currentUserSource = new BehaviorSubject<User>(null);
 currentUser$ = this.currentUserSource.asObservable();
 
@@ -63,5 +63,9 @@ currentUser$ = this.currentUserSource.asObservable();
   getDecodedToken(token) {
     return JSON.parse(atob(token.split('.')[1]));
   }
+
+  getIPAddress() {  
+    return this.http.get("https://ipinfo.io?token=63d5ada815b74c");  
+  }  
 
 }
