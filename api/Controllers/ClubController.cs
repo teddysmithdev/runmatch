@@ -14,19 +14,13 @@ namespace API.Controllers
 {
     public class ClubController : Controller
     {
-        private readonly IClubRepository _clubRepository;
-        private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
         public ClubController(
-            IClubRepository clubRepository, 
-            IEventRepository eventRepository, 
             IMapper mapper,
             IUnitOfWork unitOfWork)
         {
-            _clubRepository = clubRepository;
-            _eventRepository = eventRepository;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
@@ -34,13 +28,13 @@ namespace API.Controllers
         [HttpGet("api/clubs")]
         public async Task<IActionResult> GetClubs()
         {
-            return Ok( await _clubRepository.GetClubsAsync());
+            return Ok( await _unitOfWork.ClubRepository.GetClubsAsync());
         }
 
         [HttpGet("api/clubs/{clubId}")]
         public async Task<IActionResult> GetClub([FromRoute] int clubId)
         {
-            var club = await _clubRepository.GetClubByIdAsync(clubId);
+            var club = await _unitOfWork.ClubRepository.GetClubByIdAsync(clubId);
 
             if (club == null)
                 return NotFound();
@@ -80,7 +74,7 @@ namespace API.Controllers
             };
 
             
-            await _clubRepository.CreateClubAsync(club);
+            await _unitOfWork.ClubRepository.CreateClubAsync(club);
 
             var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
             var locationUri = baseUrl + "/api/club/" + club.Name;
@@ -98,7 +92,7 @@ namespace API.Controllers
                 Name = request.Name
             };
 
-            var updated = await _clubRepository.UpdateClubAsync(club);
+            var updated = await _unitOfWork.ClubRepository.UpdateClubAsync(club);
 
             if(updated)
                 return Ok();
@@ -109,7 +103,7 @@ namespace API.Controllers
         [HttpDelete("api/clubs/{clubId}")]
         public async Task<IActionResult> Delete([FromRoute]int clubId)
         {
-            var deleted = await _clubRepository.DeleteClubAsync(clubId);
+            var deleted = await _unitOfWork.ClubRepository.DeleteClubAsync(clubId);
 
             if(deleted)
                 return NoContent();

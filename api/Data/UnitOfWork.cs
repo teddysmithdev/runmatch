@@ -20,6 +20,8 @@ namespace API.Data
         public IMessageRepository MessageRepository => new MessageRepository(_context, _mapper);
 
         public IInviteRepository InviteRepository => new InviteRepository(_context);
+        public IClubRepository ClubRepository => new ClubRepository(_context);
+        public IEventRepository EventRepository => new EventRepository(_context);
 
         public async Task<bool> Complete()
         {

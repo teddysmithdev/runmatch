@@ -37,6 +37,8 @@ namespace API.Data
             
             query = query.Where(u => u.UserName != userParams.CurrentUsername);
 
+            query = query.Where(u => u.State == userParams.State);
+
             var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
             var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
 

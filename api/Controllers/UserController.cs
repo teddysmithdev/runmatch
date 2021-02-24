@@ -34,10 +34,8 @@ namespace API.Controllers
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsername(User.GetUsername());
             userParams.CurrentUsername = user.UserName;
-
-            // if (string.IsNullOrEmpty(userParams.Gender))
-            //     userParams.Gender = userParams.Gender == "male" ? "female" : "male";
-
+            userParams.State = user.State;
+            
             var users = await _unitOfWork.UserRepository.GetMembersAsync(userParams);
             var usersToReturn = _mapper.Map<IEnumerable<MemberDto>>(users);
             Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
