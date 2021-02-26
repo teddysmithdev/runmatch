@@ -39,6 +39,7 @@
     "open-iconic": "^1.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "xng-breadcrumb": "^6.6.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

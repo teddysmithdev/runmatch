@@ -22,13 +22,13 @@ import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "members", component: MemberListComponent, canActivate: [AuthGuard] },
+  { path: "members", component: MemberListComponent, canActivate: [AuthGuard], data: {breadcrumb: 'Find other runners'} },
   { path: "members/:username", component: MemberDetailComponent, canActivate: [AuthGuard] },
   { path: "member/edit", component: MemberEditComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
   { path: "onboard", component: OnboardComponent, canActivate: [AuthGuard] },
   { path: "invites", component: InvitesComponent, canActivate: [AuthGuard] },
-  { path: "clubs", component: ClubListComponent, canActivate: [AuthGuard] },
-  { path: "clubs/:id", component: ClubDetailComponent, canActivate: [AuthGuard] },
+  { path: "running-clubs", component: ClubListComponent },
+  { path: "running-clubs/:id", component: ClubDetailComponent },
   { path: "club-create", component: ClubCreateComponent, canActivate: [AuthGuard] },
   { path: "messages", component: MessagesComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminPanelComponent, canActivate: [AdminGuard] },

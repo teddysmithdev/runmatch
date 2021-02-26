@@ -38,6 +38,9 @@ import { ClubCreateComponent } from './clubs/club-create/club-create.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './_guards/auth.guard';
 import { FooterComponent } from './home/footer/footer.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { BreadcrumbModule } from 'xng-breadcrumb';
+import { SidebarStatesComponent } from './components/sidebar-states/sidebar-states.component';
 
 
 @NgModule({
@@ -66,7 +69,9 @@ import { FooterComponent } from './home/footer/footer.component';
       ClubListComponent,
       ClubDetailComponent,
       ClubCreateComponent,
-      FooterComponent
+      FooterComponent,
+      BreadcrumbComponent,
+      SidebarStatesComponent
    ],
   imports: [
     BrowserModule,
@@ -79,7 +84,8 @@ import { FooterComponent } from './home/footer/footer.component';
     NgxSpinnerModule,
     FileUploadModule,
     FontAwesomeModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    BreadcrumbModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <div>
+        <span class="h6">Search By State</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled list-spacing-sm" *nFor="let club of runningClubs">
+        <li>
+          <i class="icon-text-document text-muted mr-1"></i>
+          <a href="#">Running club in {{club}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>

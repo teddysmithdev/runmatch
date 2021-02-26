@@ -83,7 +83,7 @@
         </div>
         <!--end of col-->
         <div class="col-auto">
-          <a href="#" class="btn btn-outline-primary" [routerLink]="['/clubs']" routerLinkActive="router-link-active" >View all</a>
+          <a href="#" class="btn btn-outline-primary" [routerLink]="['/running-clubs']" routerLinkActive="router-link-active" >View all</a>
         </div>
         <!--end of col-->
       </div>
@@ -92,11 +92,11 @@
 
         <li class="col-12 col-md-6 col-lg-4" *ngFor="let club of clubs">
           <div class="card">
-            <a [routerLink]="['/clubs', club.id]">
+            <a [routerLink]="['/running-clubs', club.id]">
               <img class="card-img-top" src="assets/img/graphic-product-sidekick.jpg" alt="Card image cap">
             </a>
             <div class="card-body">
-              <a [routerLink]="['/clubs', club.id]">
+              <a [routerLink]="['/running-clubs', club.id]">
                 <h4 class="card-title">{{club.name}}</h4>
                 <p class="card-text text-body">{{club.city}}, {{club.state}}</p>
               </a>
