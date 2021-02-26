@@ -6,6 +6,7 @@ import { OnboardComponent } from './auth/onboard/onboard.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ClubCreateComponent } from './clubs/club-create/club-create.component';
 import { ClubDetailComponent } from './clubs/club-detail/club-detail.component';
+import { ClubListStateComponent } from './clubs/club-list-state/club-list-state.component';
 import { ClubListComponent } from './clubs/club-list/club-list.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
@@ -27,8 +28,12 @@ const routes: Routes = [
   { path: "member/edit", component: MemberEditComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
   { path: "onboard", component: OnboardComponent, canActivate: [AuthGuard] },
   { path: "invites", component: InvitesComponent, canActivate: [AuthGuard] },
-  { path: "running-clubs", component: ClubListComponent },
-  { path: "running-clubs/:id", component: ClubDetailComponent },
+  { path: "running-clubs", 
+    component: ClubListComponent,
+    children: [
+      { path: ":id", component: ClubDetailComponent },
+      { path: "state/:state", component: ClubListStateComponent },
+    ] },
   { path: "club-create", component: ClubCreateComponent, canActivate: [AuthGuard] },
   { path: "messages", component: MessagesComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminPanelComponent, canActivate: [AdminGuard] },

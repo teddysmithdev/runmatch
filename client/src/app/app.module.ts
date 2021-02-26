@@ -41,6 +41,7 @@ import { FooterComponent } from './home/footer/footer.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { SidebarStatesComponent } from './components/sidebar-states/sidebar-states.component';
+import { ClubListStateComponent } from './clubs/club-list-state/club-list-state.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { SidebarStatesComponent } from './components/sidebar-states/sidebar-stat
       ClubCreateComponent,
       FooterComponent,
       BreadcrumbComponent,
-      SidebarStatesComponent
+      SidebarStatesComponent,
+      ClubListStateComponent
    ],
   imports: [
     BrowserModule,
