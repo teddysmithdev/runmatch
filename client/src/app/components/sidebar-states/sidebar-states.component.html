@@ -3,12 +3,13 @@
       <div>
         <span class="h6">Search By State</span>
       </div>
+      <a href="#">View all &rsaquo;</a>
     </div>
     <div class="card-body">
-      <ul class="list-unstyled list-spacing-sm" *nFor="let club of runningClubs">
+      <ul class="list-unstyled list-spacing-sm" *ngFor="let club of runningClubs">
         <li>
           <i class="icon-text-document text-muted mr-1"></i>
-          <a href="#">Running club in {{club}}</a>
+          <a href="#">{{club}}</a>
         </li>
       </ul>
     </div>

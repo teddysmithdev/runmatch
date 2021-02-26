@@ -1,9 +1,14 @@
+using System.Linq;
 using System.Threading.Tasks;
+using api.Dtos;
+using API.Data;
+using API.Entities;
 using API.Helpers;
 using API.Interfaces;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace API.Services
@@ -11,7 +16,9 @@ namespace API.Services
     public class PhotoService : IPhotoService
     {
         private readonly Cloudinary _cloudinary;
-        public PhotoService(IOptions<CloudinarySettings> config)
+        private readonly DataContext _context;
+
+        public PhotoService(IOptions<CloudinarySettings> config, DataContext context)
         {
             var acc = new Account
             (
@@ -21,6 +28,7 @@ namespace API.Services
             );
 
             _cloudinary = new Cloudinary(acc);
+            _context = context;
         }
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
@@ -46,6 +54,16 @@ namespace API.Services
             var result = await _cloudinary.DestroyAsync(deleteParams);
 
             return result;
+        }
+
+        public async Task<Photo> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<Photo> GetAsync(int photoId)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
