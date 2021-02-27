@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
+import { IpAddress } from '../_models/ipaddress';
 import { User } from '../_models/user';
 import { PresenceService } from './presence.service';
 
@@ -64,8 +65,8 @@ currentUser$ = this.currentUserSource.asObservable();
     return JSON.parse(atob(token.split('.')[1]));
   }
 
-  getIPAddress() {  
-    return this.http.get("https://ipinfo.io?token=63d5ada815b74c");  
+  getIPAddress() : Observable<IpAddress> {  
+    return this.http.get<IpAddress>("https://ipinfo.io?token=63d5ada815b74c");  
   }  
 
 }

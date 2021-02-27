@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Club } from '../_models/club';
+import { ClubParams } from '../_models/clubParams';
 import { PaginatedResult } from '../_models/pagination';
+import { UserParams } from '../_models/userParams';
 
 
 @Injectable({
@@ -12,25 +14,35 @@ import { PaginatedResult } from '../_models/pagination';
 })
 export class ClubService {
   baseUrl = environment.apiUrl
-  paginatedResult: PaginatedResult<Club[]> = new PaginatedResult<Club[]>();
+  
 
 constructor(private http: HttpClient) { }
 
-getClubs(page?: number, itemsPerPage?: number) {
-  let params = new HttpParams();
-  if (page !== null && itemsPerPage !== null) {
-    params = params.append('pageNumber', page.toString())
-    params = params.append('pageSize', itemsPerPage.toString())
+getClubs(clubParams: ClubParams) {
+  let params = this.getPaginationHeaders(clubParams.pageNumber, clubParams.pageSize);
+  params = params.append("city", clubParams.city.toString());
+  params = params.append("state", clubParams.state.toString());
+  return this.getPaginatedResult<Club[]>(this.baseUrl + 'users', params);
+}
+
+  private getPaginatedResult<T>(url, params) {
+    const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
+    return this.http.get<T>(url + "clubs", { observe: 'response', params }).pipe(
+      map(response => {
+        paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') != null) {
+        paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return paginatedResult;
+      })
+    );
   }
-  return this.http.get<Club[]>(this.baseUrl + "clubs", {observe: 'response', params}).pipe(
-    map(response => {
-      this.paginatedResult.result = response.body;
-      if (response.headers.get('Pagination') != null) {
-        this.paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'))
-      }
-      return this.paginatedResult;
-    })
-  );
+
+private getPaginationHeaders(pageNumber: number, pageSize: number) {
+  let params = new HttpParams();
+    params = params.append('pageNumber', pageNumber.toString())
+    params = params.append('pageSize', pageSize.toString())
+    return params;
 }
 
 getClub(id): Observable<Club> {
