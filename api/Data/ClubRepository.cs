@@ -49,17 +49,13 @@ namespace API.Data
 
         public async Task<PagedList<ClubDto>> GetClubsAsync(ClubParams clubParams)
         {
-            var query = _context.Clubs
-            .ProjectTo<ClubDto>(_mapper.ConfigurationProvider)
-            .AsNoTracking()
-            .AsNoTracking();
+            var query = _context.Clubs.AsQueryable();
+            
+            query = query.Where(u => u.City == clubParams.City);
+            query = query.Where(u => u.State == clubParams.State);
 
-            query = query.Where(u => u.State == clubParams.state);
-            query = query.Where(u => u.City == clubParams.city);
-
-            return await PagedList<ClubDto>.CreateAsync(
-                query.ProjectTo<ClubDto>(_mapper.ConfigurationProvider).AsNoTracking(), 
-                clubParams.PageNumber, clubParams.PageSize);
+            return await PagedList<ClubDto>.CreateAsync(query.ProjectTo<ClubDto>(_mapper.ConfigurationProvider)
+                .AsNoTracking(), clubParams.PageNumber, clubParams.PageSize);
         
         }
 

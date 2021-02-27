@@ -33,10 +33,10 @@ namespace API.Controllers
         [HttpGet("api/clubs")]
         public async Task<ActionResult<PagedList<ClubDto>>> GetClubs([FromQuery]ClubParams clubParams)
         {
-            var users = await _unitOfWork.ClubRepository.GetClubsAsync(clubParams);
-            var usersToReturn = _mapper.Map<IEnumerable<ClubDto>>(users);
-            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
-            return Ok(usersToReturn);
+            var clubs = await _unitOfWork.ClubRepository.GetClubsAsync(clubParams);
+            var clubsToReturn = _mapper.Map<IEnumerable<ClubDto>>(clubs);
+            Response.AddPaginationHeader(clubs.CurrentPage, clubs.PageSize, clubs.TotalCount, clubs.TotalPages);
+            return Ok(clubsToReturn);
         }
 
         [HttpGet("api/clubs/{clubId}")]

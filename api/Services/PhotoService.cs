@@ -18,6 +18,11 @@ namespace API.Services
         private readonly Cloudinary _cloudinary;
         private readonly DataContext _context;
 
+        public PhotoService()
+        {
+            
+        }
+
         public PhotoService(IOptions<CloudinarySettings> config, DataContext context)
         {
             var acc = new Account

@@ -4,7 +4,7 @@ namespace api.Helpers
 {
     public class ClubParams : PaginationParams
     {
-        public string state { get; set; }
-        public string city { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
     }
 }
