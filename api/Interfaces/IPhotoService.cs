@@ -10,7 +10,7 @@ namespace API.Interfaces
     {
         Task<ImageUploadResult> AddPhotoAsync(IFormFile file);
         Task<DeletionResult> DeletePhotoAsync(string publicId);
-        Task<Photo> GetAsync(int photoId);
-        Task<Photo> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId);
+        // Task<Photo> GetAsync(int photoId);
+        // Task<Photo> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId);
     }
 }

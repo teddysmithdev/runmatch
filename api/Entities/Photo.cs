@@ -5,7 +5,7 @@ using api.Dtos;
 namespace API.Entities
 {
     [Table("Photos")]
-    public class Photo : PhotoCreate
+    public class Photo
     {
         public int Id { get; set; }
         public string Url { get; set; }

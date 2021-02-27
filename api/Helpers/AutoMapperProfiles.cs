@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using API.Domain;
 using API.Dtos;
+using API.Dtos.ClubDto;
 using API.Entities;
 using API.Extenstions;
 using AutoMapper;
@@ -23,6 +24,8 @@ namespace API.Helpers
                 .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => src.Recipient.Photos.FirstOrDefault(x => x.isMain).Url));
             CreateMap<RegisterDto, AppUser>();
             CreateMap<CreateClubDto, Club>();
+            CreateMap<Club, ClubDto>();
+            CreateMap<ClubDto, ClubDto>();
         }
     }
 }

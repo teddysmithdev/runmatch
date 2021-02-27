@@ -6,6 +6,7 @@ import { Club } from 'src/app/_models/club';
 import { Event } from 'src/app/_models/event';
 import { ClubService } from 'src/app/_services/club.service';
 import { EventService } from 'src/app/_services/event.service';
+import { BreadcrumbService } from 'xng-breadcrumb';
 
 @Component({
   selector: 'app-club-detail',
@@ -21,7 +22,8 @@ export class ClubDetailComponent implements OnInit {
     private route: ActivatedRoute, 
     private toastr: ToastrService,
     private eventService: EventService,
-    private titleService: Title) { }
+    private titleService: Title,
+    private bcService: BreadcrumbService) { }
 
   ngOnInit() {
     this.getClub();
@@ -32,6 +34,7 @@ export class ClubDetailComponent implements OnInit {
   getClub() {
     this.clubService.getClub(this.route.snapshot.params['id']).subscribe((club: Club) => {
       this.club = club;
+      this.bcService.set("@clubDetails", club.name)
     }, error => {
       this.toastr.error(error);
     });

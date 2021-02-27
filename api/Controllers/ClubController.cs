@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Helpers;
 using API.Domain;
 using API.Dtos;
+using API.Dtos.ClubDto;
 using API.Extenstions;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using AutoMapper;
@@ -25,10 +28,15 @@ namespace API.Controllers
             _unitOfWork = unitOfWork;
         }
 
+
+
         [HttpGet("api/clubs")]
-        public async Task<IActionResult> GetClubs()
+        public async Task<ActionResult<PagedList<ClubDto>>> GetClubs([FromQuery]ClubParams clubParams)
         {
-            return Ok( await _unitOfWork.ClubRepository.GetClubsAsync());
+            var users = await _unitOfWork.ClubRepository.GetClubsAsync(clubParams);
+            var usersToReturn = _mapper.Map<IEnumerable<ClubDto>>(users);
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+            return Ok(usersToReturn);
         }
 
         [HttpGet("api/clubs/{clubId}")]

@@ -19,4 +19,18 @@
     color: #02B875;
 }
 
+.xng-breadcrumb-root {
+    display: inline;
+    border-radius: 0;
+}
+
+label.xng-breadcrumb-trail {
+    margin-bottom: 0;
+    color: white;
+}
+
+.xng-breadcrumb-seperator {
+    padding: 0 0;
+}
+
 

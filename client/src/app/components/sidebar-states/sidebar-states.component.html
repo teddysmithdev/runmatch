@@ -9,7 +9,7 @@
       <ul class="list-unstyled list-spacing-sm" *ngFor="let state of runningClubs;let i=index">
         <li>
           <i class="icon-text-document text-muted mr-1"></i>
-          <a [routerLink]="['/running-clubs/state/', state]">{{state}}</a>
+          <a [routerLink]="['/running-clubs/', state | slugify]">{{state}}</a>
         </li>
       </ul>
     </div>

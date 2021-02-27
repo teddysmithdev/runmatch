@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Club } from '../_models/club';
+import { PaginatedResult } from '../_models/pagination';
 import { AccountService } from '../_services/account.service';
 import { ClubService } from '../_services/club.service';
 
@@ -14,8 +15,10 @@ import { ClubService } from '../_services/club.service';
 export class HomeComponent implements OnInit {
   registerForm: FormGroup;
   registerMode = false;
-  clubs: Club[]
+  clubs: Club[];
   validationErrors: string[] = [];
+  pageNumber = 1;
+  pageSize = 5;
 
   constructor(
     private accountService: AccountService, 
@@ -54,8 +57,8 @@ export class HomeComponent implements OnInit {
   }
 
   getClubs() {
-    this.clubService.getClubs().subscribe(e => {
-      this.clubs = e
+    this.clubService.getClubs(this.pageNumber, this.pageSize).subscribe(e => {
+      this.clubs = e.result
     }, error => {
       this.toastr.error(error);
     })

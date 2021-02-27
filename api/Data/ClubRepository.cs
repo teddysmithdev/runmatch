@@ -2,9 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Helpers;
 using API.Data;
 using API.Domain;
+using API.Dtos.ClubDto;
+using API.Helpers;
 using API.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -12,10 +17,12 @@ namespace API.Data
     public class ClubRepository : IClubRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public ClubRepository(DataContext context)
+        public ClubRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public async Task<bool> CreateClubAsync(Club club)
         {
@@ -40,9 +47,20 @@ namespace API.Data
             return await _context.Clubs.SingleOrDefaultAsync(x => x.Id == clubId);
         }
 
-        public async Task<List<Club>> GetClubsAsync()
+        public async Task<PagedList<ClubDto>> GetClubsAsync(ClubParams clubParams)
         {
-            return await _context.Clubs.ToListAsync();
+            var query = _context.Clubs
+            .ProjectTo<ClubDto>(_mapper.ConfigurationProvider)
+            .AsNoTracking()
+            .AsNoTracking();
+
+            query = query.Where(u => u.State == clubParams.state);
+            query = query.Where(u => u.City == clubParams.city);
+
+            return await PagedList<ClubDto>.CreateAsync(
+                query.ProjectTo<ClubDto>(_mapper.ConfigurationProvider).AsNoTracking(), 
+                clubParams.PageNumber, clubParams.PageSize);
+        
         }
 
         public async Task<bool> UpdateClubAsync(Club clubToUpdate)

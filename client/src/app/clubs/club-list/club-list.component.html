@@ -1,3 +1,4 @@
+<app-breadcrumb></app-breadcrumb>
 <section>
     <div class="container">
       <div class="row">
@@ -12,7 +13,7 @@
           <div class="card card-sm">
             <div class="card-header d-flex bg-secondary justify-content-between align-items-center">
               <div>
-                <h6>Find A Club</h6>
+                <h6>Find A Running Club</h6>
               </div>
               <form class="d-flex align-items-center">
                 <span class="mr-2 text-muted text-small text-nowrap">Sort by:</span>
@@ -34,7 +35,7 @@
                   <div class="media-body">
                     <div class="d-flex justify-content-between mb-2">
                       <div>
-                        <a [routerLink]="['/running-clubs', club.id]" class="mb-1">
+                        <a [routerLink]="['/running-club', club.id]" class="mb-1">
                           <h4>{{club.name}}</h4>
                         </a>
                         <span>{{club.city}}, {{club.state}}</span>
@@ -62,10 +63,21 @@
                   </div>
                 </div>
               </li>
-  
-             
             </ul>
           </div>
+        <div class="d-flex justify-content-center">
+          <pagination 
+            [boundaryLinks]="true" 
+            [totalItems]="pagination?.totalItems"
+            [itemsPerPage]="pagination?.itemsPerPage"
+            [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)"
+            previousText="&lsaquo;" 
+            nextText="&rsaquo;" 
+            firstText="&laquo;" 
+            lastText="&raquo;">
+          </pagination>
+        </div>
         </div>
         <!--end of col-->
         <div class="col-lg-3">

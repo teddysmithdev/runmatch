@@ -3,7 +3,7 @@ using api.Dtos;
 
 namespace api.Entities
 {
-    public class Blog : BlogCreate
+    public class Blog
     {
         public string Username { get; set; }
         public int ApplicationUserId { get; set; }

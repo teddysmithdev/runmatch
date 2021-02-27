@@ -56,14 +56,14 @@ namespace API.Services
             return result;
         }
 
-        public async Task<Photo> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId)
-        {
-            throw new System.NotImplementedException();
-        }
+        // public async Task<Photo> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId)
+        // {
+        //     throw new System.NotImplementedException();
+        // }
 
-        public async Task<Photo> GetAsync(int photoId)
-        {
-            throw new System.NotImplementedException();
-        }
+        // public async Task<Photo> GetAsync(int photoId)
+        // {
+        //     throw new System.NotImplementedException();
+        // }
     }
 }

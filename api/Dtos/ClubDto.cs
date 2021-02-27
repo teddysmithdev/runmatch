@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using API.Domain;
 
 namespace API.Dtos.ClubDto
@@ -9,6 +10,6 @@ namespace API.Dtos.ClubDto
         public string Intro { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public CreateEventDto Events { get; set; }
+        public ICollection<Event> Events { get; set; }
     }
 }

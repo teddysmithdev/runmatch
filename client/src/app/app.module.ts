@@ -42,6 +42,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { SidebarStatesComponent } from './components/sidebar-states/sidebar-states.component';
 import { ClubListStateComponent } from './clubs/club-list-state/club-list-state.component';
+import { SlugifyPipe } from './_pipes/slugify.pipe';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { ClubListStateComponent } from './clubs/club-list-state/club-list-state.
       FooterComponent,
       BreadcrumbComponent,
       SidebarStatesComponent,
-      ClubListStateComponent
+      ClubListStateComponent,
+      SlugifyPipe
    ],
   imports: [
     BrowserModule,
