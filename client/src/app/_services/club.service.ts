@@ -22,7 +22,7 @@ getClubs(clubParams: ClubParams) {
   let params = this.getPaginationHeaders(clubParams.pageNumber, clubParams.pageSize);
   params = params.append("city", clubParams.city.toString());
   params = params.append("state", clubParams.state.toString());
-  return this.getPaginatedResult<Club[]>(this.baseUrl + 'users', params);
+  return this.getPaginatedResult<Club[]>(this.baseUrl, params);
 }
 
   private getPaginatedResult<T>(url, params) {

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { Club } from '../_models/club';
 import { ClubParams } from '../_models/clubParams';
+import { IpAddress } from '../_models/ipaddress';
 import { PaginatedResult } from '../_models/pagination';
 import { AccountService } from '../_services/account.service';
 import { ClubService } from '../_services/club.service';
@@ -13,11 +15,11 @@ import { ClubService } from '../_services/club.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
   registerForm: FormGroup;
   registerMode = false;
-  clubParams: ClubParams;
   clubs: Club[];
+  clubParams: ClubParams = new ClubParams();
   validationErrors: string[] = [];
   pageNumber = 1;
   pageSize = 5;
@@ -25,12 +27,23 @@ export class HomeComponent implements OnInit {
   constructor(
     private accountService: AccountService, 
     private router: Router, 
+    private route: ActivatedRoute,
     private toastr: ToastrService,
-    private clubService: ClubService) { }
+    private clubService: ClubService) { 
+
+    }
 
   ngOnInit() {
     this.initializeForm();
+    this.route.data.subscribe(e => {
+      console.log(e)
+      this.clubParams.city = e.location.city;
+      this.clubParams.state = e.location.region;
+    })
     this.getClubs();
+  }
+
+  ngOnChanges() {
   }
 
   initializeForm() {

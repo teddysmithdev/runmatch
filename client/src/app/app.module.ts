@@ -43,6 +43,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { SidebarStatesComponent } from './components/sidebar-states/sidebar-states.component';
 import { ClubListStateComponent } from './clubs/club-list-state/club-list-state.component';
 import { SlugifyPipe } from './_pipes/slugify.pipe';
+import { LocationResolver } from './_resolvers/location.resolver';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { SlugifyPipe } from './_pipes/slugify.pipe';
     BreadcrumbModule
   ],
   providers: [
+    LocationResolver,
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},

@@ -20,15 +20,16 @@ import { MessagesComponent } from './messages/messages.component';
 import { AdminGuard } from './_guards/admin.guard';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.guard';
+import { LocationResolver } from './_resolvers/location.resolver';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  { path: "", component: HomeComponent, resolve: {location: LocationResolver} },
   { path: "members", component: MemberListComponent, canActivate: [AuthGuard], data: {breadcrumb: 'Find other runners'} },
   { path: "members/:username", component: MemberDetailComponent, canActivate: [AuthGuard] },
   { path: "member/edit", component: MemberEditComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
   { path: "onboard", component: OnboardComponent, canActivate: [AuthGuard] },
   { path: "invites", component: InvitesComponent, canActivate: [AuthGuard] },
-  { path: "running-club", component: ClubListComponent, pathMatch: 'full' },
+  { path: "running-club", component: ClubListComponent, resolve: {location: LocationResolver}, pathMatch: 'full' },
   { path: "running-club/:id", component: ClubDetailComponent, data:{breadcrumb: {alias: "clubDetail"}} },
   { path: "running-clubs/:state", component: ClubListStateComponent, data:{breadcrumb: {alias: "clubDetail"}} },
   { path: "club-create", component: ClubCreateComponent, canActivate: [AuthGuard] },
@@ -42,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

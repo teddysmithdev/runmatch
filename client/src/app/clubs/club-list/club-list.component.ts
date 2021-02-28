@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { Club } from 'src/app/_models/club';
 import { ClubParams } from 'src/app/_models/clubParams';
+import { IpAddress } from 'src/app/_models/ipaddress';
 import { Pagination } from 'src/app/_models/pagination';
 import { User } from 'src/app/_models/user';
 import { UserParams } from 'src/app/_models/userParams';
@@ -18,35 +20,32 @@ import { BreadcrumbService } from 'xng-breadcrumb';
 export class ClubListComponent implements OnInit {
   clubs: Club[];
   pagination: Pagination;
-  clubParams: ClubParams;
-  pageNumber = 1;
-  pageSize = 5;
+  clubParams: ClubParams = new ClubParams();
   user: User;
 
   constructor(
-    private clubServce: ClubService,
+    private clubService: ClubService,
     private toastr: ToastrService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private activatedRoute: ActivatedRoute
     ) { 
-      this.accountService.getIPAddress().subscribe(location => {
-        this.clubParams.city = location.city
-        this.clubParams.state = location.region
-        this.clubParams.pageNumber = 1;
-        this.clubParams.pageSize = 5;
-      })
-    }
+    
+    } 
 
   ngOnInit() {
+    this.activatedRoute.data.subscribe((data) => {
+      this.clubParams.city = data.location.city;
+      this.clubParams.state = data.location.region;
+    });
+    this.loadClubs();
   }
 
   ngOnChanges() {
-    if (this.clubParams) {
-      this.loadClubs();
-    }
+      
   }
 
   loadClubs() {
-    this.clubServce.getClubs(this.clubParams).subscribe(response => {
+    this.clubService.getClubs(this.clubParams).subscribe(response => {
       this.clubs = response.result;
       this.pagination = response.pagination
     }, error => {
