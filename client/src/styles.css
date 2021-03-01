@@ -3,6 +3,7 @@
 @import '~bs-stepper/dist/css/bs-stepper.min.css';
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
 @import '~ngx-toastr/toastr.css';
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 

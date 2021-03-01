@@ -27,7 +27,7 @@
             </div>
             <ul class="list-group list-group-flush">
   
-              <!-- <li class="list-group-item" *ngFor="let club of clubs"> -->
+              <li class="list-group-item" *ngFor="let club of clubs">
                 <div class="media align-items-center">
                   <a href="#" class="mr-4">
                     <img alt="Image" src="assets/img/graphic-product-sidekick-thumb.jpg" class="rounded avatar avatar-lg" />
@@ -35,10 +35,10 @@
                   <div class="media-body">
                     <div class="d-flex justify-content-between mb-2">
                       <div>
-                        <!-- <a [routerLink]="['/running-club', club.id]" class="mb-1">
+                        <a [routerLink]="['/running-club', club.id]" class="mb-1">
                           <h4>{{club.name}}</h4>
                         </a>
-                        <span>{{club.city}}, {{club.state}}</span> -->
+                        <span>{{club.city}}, {{club.state}}</span>
                       </div>
                       <div class="dropdown">
                         <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="SidekickButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,11 +62,22 @@
                     </div>
                   </div>
                 </div>
-              <!-- </li> -->
-  
-             
+              </li>
             </ul>
           </div>
+        <div class="d-flex justify-content-center">
+          <pagination 
+            [boundaryLinks]="true" 
+            [totalItems]="pagination?.totalItems"
+            [itemsPerPage]="pagination?.itemsPerPage"
+            [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)"
+            previousText="&lsaquo;" 
+            nextText="&rsaquo;" 
+            firstText="&laquo;" 
+            lastText="&raquo;">
+          </pagination>
+        </div>
         </div>
         <!--end of col-->
         <div class="col-lg-3">

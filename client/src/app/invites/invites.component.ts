@@ -11,7 +11,7 @@ import { MemberService } from '../_services/member.service';
 })
 export class InvitesComponent implements OnInit {
   members: Partial<Member[]>;
-  predicate = 'invited';
+  predicate = 'invitedBy';
   pageNumber = 1;
   pageSize = 5;
   pagination: Pagination;

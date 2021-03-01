@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TimeagoModule } from 'ngx-timeago';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
@@ -24,8 +25,8 @@ import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-
   ],
   exports: [
     PaginationModule,
-    DlDateTimeDateModule,  // <--- Determines the data type of the model
-    DlDateTimePickerModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
     TimeagoModule,
     ToastrModule,
     NgbModule

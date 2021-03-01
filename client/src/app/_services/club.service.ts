@@ -20,8 +20,12 @@ constructor(private http: HttpClient) { }
 
 getClubs(clubParams: ClubParams) {
   let params = this.getPaginationHeaders(clubParams.pageNumber, clubParams.pageSize);
-  params = params.append("city", clubParams.city.toString());
-  params = params.append("state", clubParams.state.toString());
+  if (clubParams.city != null) {
+    params = params.append("city", clubParams.city.toString());
+  }
+  if (clubParams.state != null) {
+    params = params.append("state", clubParams.state.toString());
+  }
   return this.getPaginatedResult<Club[]>(this.baseUrl, params);
 }
 

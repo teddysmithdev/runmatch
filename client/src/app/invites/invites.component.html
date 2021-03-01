@@ -64,14 +64,15 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="bg-white" *ngFor="let member of members">
+            <tbody *ngFor="let member of members" [routerLink]="['/members', member.username]"
+            routerLinkActive="router-link-active">
+              <tr class="bg-white">
                 <th scope="row">
-                  <a class="media align-items-center" href="#">
+                  <a class="media align-items-center">
                     <img alt="Image" src="{{member.photoUrl}}" class="avatar rounded avatar-sm" />
                     <div class="media-body">
                       <span class="h6 mb-0">{{member.username}}</span>
-                      <span class="text-muted">{{member.city}}</span>
+                      <span class="text-muted">{{member.city}}, {{member.state}}</span>
                     </div>
                   </a>
                 </th>

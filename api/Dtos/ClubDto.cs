@@ -6,6 +6,7 @@ namespace API.Dtos.ClubDto
 {
     public class ClubDto
     {
+        public int id { get; set; }
         public string Name { get; set; }
         public string Intro { get; set; }
         public string City { get; set; }

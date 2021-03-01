@@ -35,7 +35,7 @@
                   <div class="media-body">
                     <div class="d-flex justify-content-between mb-2">
                       <div>
-                        <a [routerLink]="['/running-club', club.id]" class="mb-1">
+                        <a [routerLink]="['/running-club', club.name | slugify]" [queryParams]="{id: club.id}"class="mb-1">
                           <h4>{{club.name}}</h4>
                         </a>
                         <span>{{club.city}}, {{club.state}}</span>

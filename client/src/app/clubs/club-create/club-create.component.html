@@ -253,22 +253,29 @@
                   />
                 </div>
               </div>
-              <dl-date-time-picker
-                startView="day"
-                maxView="year"
-                minView="minute"
-                minuteStep="5"
-                formControlName="date"
-                >
-                </dl-date-time-picker>
+              <div class="form-row form-group">
+                <div class="col">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="yyyy-mm-dd"
+                             name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                 <ngb-timepicker></ngb-timepicker>
+                </div>
+              </div>
             </div>
-            <div class="row" *ngIf="validationErrors.length > 0">
-              <ul class="text-danger">
+            
+            <!-- <div class="row" *ngIf="validationErrors.length > 0"> -->
+              <!-- <ul class="text-danger">
                   <li *ngFor="let error of validationErrors">
                       {{error}}
                   </li>
-              </ul>
-            </div>
+              </ul> -->
+            <!-- </div> -->
             <button type="submit" class="btn btn-primary mt-5">Submit</button>
           </div>
         </form>

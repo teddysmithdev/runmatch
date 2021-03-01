@@ -32,7 +32,7 @@ export class ClubDetailComponent implements OnInit {
   }
 
   getClub() {
-    this.clubService.getClub(this.route.snapshot.params['id']).subscribe((club: Club) => {
+    this.clubService.getClub(this.route.snapshot.queryParamMap.get('id')).subscribe((club: Club) => {
       this.club = club;
       this.bcService.set("@clubDetails", club.name)
     }, error => {

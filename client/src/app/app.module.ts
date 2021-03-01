@@ -44,6 +44,8 @@ import { SidebarStatesComponent } from './components/sidebar-states/sidebar-stat
 import { ClubListStateComponent } from './clubs/club-list-state/club-list-state.component';
 import { SlugifyPipe } from './_pipes/slugify.pipe';
 import { LocationResolver } from './_resolvers/location.resolver';
+import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
+import { NgbTimepicker, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -76,10 +78,12 @@ import { LocationResolver } from './_resolvers/location.resolver';
       BreadcrumbComponent,
       SidebarStatesComponent,
       ClubListStateComponent,
-      SlugifyPipe
+      SlugifyPipe,
+      DateTimePickerComponent
    ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -90,6 +94,8 @@ import { LocationResolver } from './_resolvers/location.resolver';
     FileUploadModule,
     FontAwesomeModule,
     BsDatepickerModule.forRoot(),
+    NgbTimepickerModule,
+    NgbTimepickerModule,
     BreadcrumbModule
   ],
   providers: [

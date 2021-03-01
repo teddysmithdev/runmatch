@@ -14,28 +14,33 @@ import { ClubService } from 'src/app/_services/club.service';
 export class ClubListStateComponent implements OnInit {
   clubs: Club[];
   pagination: Pagination;
-  clubParams: ClubParams;
-  pageNumber = 1;
-  pageSize = 5;
+  clubParams: ClubParams = new ClubParams();
 
   constructor(private clubService: ClubService, 
     private toastr: ToastrService,
     private route: ActivatedRoute) { 
-
+    
   }
 
   ngOnInit(): void {
-    // this.loadClubs();
+    this.clubParams.state = this.route.snapshot.params['state']
+    this.loadClubs();
   }
 
-  // loadClubs() {
-  //   this.clubService.getClubs(this.pageNumber, this.pageSize, this.route.snapshot.params['id']).subscribe(response => {
-  //     this.clubs = response.result;
-  //     this.pagination = response.pagination
-  //   }, error => {
-  //     this.toastr.error(error);
-  //   })
-  // }
+  loadClubs() {
+    this.clubService.getClubs(this.clubParams).subscribe(response => {
+      this.clubs = response.result;
+      this.pagination = response.pagination
+    }, error => {
+      this.toastr.error(error);
+    })
+  }
+
+  pageChanged(event: any) {
+    this.clubParams.pageNumber = event.page;
+    // this.memberService.setUserParams(this.userParams);
+    this.loadClubs();
+  }
   
 
 }
