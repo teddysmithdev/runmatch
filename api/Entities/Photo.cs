@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using api.Dtos;
+using api.Entities;
 
 namespace API.Entities
 {

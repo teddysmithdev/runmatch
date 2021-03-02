@@ -1,4 +1,6 @@
 using System.Threading.Tasks;
+using api.Data;
+using api.Interfaces;
 using API.Interfaces;
 using AutoMapper;
 
@@ -22,6 +24,8 @@ namespace API.Data
         public IInviteRepository InviteRepository => new InviteRepository(_context);
         public IClubRepository ClubRepository => new ClubRepository(_context, _mapper);
         public IEventRepository EventRepository => new EventRepository(_context);
+        public IBlogRepository BlogRepository => new BlogRepository(_context, _mapper);
+        public IBlogCommentRepository BlogCommentRepository => new BlogCommentRepository(_context);
 
         public async Task<bool> Complete()
         {

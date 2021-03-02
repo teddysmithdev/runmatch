@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using api.Entities;
 using API.Domain;
 using Microsoft.AspNetCore.Identity;
 
@@ -24,5 +25,6 @@ namespace API.Entities
         public ICollection<Message> MessagesSent { get; set; }
         public ICollection<Message> MessagesRecieved { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }
+        public ICollection<Blog> Blogs { get; set; }
     }
 }

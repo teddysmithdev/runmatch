@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Dtos;
 using API.Entities;
@@ -10,7 +11,7 @@ namespace API.Interfaces
     {
         Task<ImageUploadResult> AddPhotoAsync(IFormFile file);
         Task<DeletionResult> DeletePhotoAsync(string publicId);
-        // Task<Photo> GetAsync(int photoId);
-        // Task<Photo> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId);
+        Task<Photo> GetAsync(int photoId);
+        Task<List<Photo>> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId);
     }
 }

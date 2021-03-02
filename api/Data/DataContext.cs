@@ -1,4 +1,5 @@
 using System;
+using api.Entities;
 using API.Domain;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -25,6 +26,8 @@ namespace API.Data
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Club> Clubs { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
 
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {

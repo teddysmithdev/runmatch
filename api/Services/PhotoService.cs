@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos;
@@ -61,14 +62,14 @@ namespace API.Services
             return result;
         }
 
-        // public async Task<Photo> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId)
-        // {
-        //     throw new System.NotImplementedException();
-        // }
+        public async Task<List<Photo>> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId)
+        {
+            return await _context.Photos.Include(u => u.AppUser).Where(u => u.AppUser.Id == applicationUserId).ToListAsync();
+        }
 
-        // public async Task<Photo> GetAsync(int photoId)
-        // {
-        //     throw new System.NotImplementedException();
-        // }
+        public async Task<Photo> GetAsync(int photoId)
+        {
+            return await _context.Photos.Where(u => u.Id == photoId).FirstOrDefaultAsync();
+        }
     }
 }

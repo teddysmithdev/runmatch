@@ -1,4 +1,6 @@
 using System;
+using api.Data;
+using api.Interfaces;
 using API.Data;
 using API.Helpers;
 using API.Interfaces;
@@ -21,6 +23,8 @@ namespace API.Extenstions
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IClubRepository, ClubRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IBlogCommentRepository, BlogCommentRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<LogUserActivity>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
