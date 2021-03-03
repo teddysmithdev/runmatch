@@ -7,7 +7,7 @@ namespace api.Interfaces
 {
     public interface IBlogCommentRepository
     {
-        Task<bool> CreateAsync(BlogComment blogComment);
+        Task<bool> CreateAsync(BlogCommentCreate blogComment);
         Task<BlogComment> UpdateAsync(BlogCommentCreate blogCommentCreate, int applicationUserId);
         Task<List<BlogComment>> GetAllAsync(int blogId);
         Task<BlogComment> GetAsync(int blogCommentId);

@@ -46,6 +46,14 @@ import { SlugifyPipe } from './_pipes/slugify.pipe';
 import { LocationResolver } from './_resolvers/location.resolver';
 import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
 import { NgbTimepicker, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { SummaryPipe } from './_pipes/summary.pipe';
+import { BlogComponent } from './blog/blog/blog.component';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
+import { BlogsComponent } from './blog/blogs/blogs.component';
+import { FamousBlogsComponent } from './blog/famous-blogs/famous-blogs.component';
+import { BlogCommentComponent } from './blog/blog-comment/blog-comment.component';
+import { CommentSystemComponent } from './blog/comment-system/comment-system.component';
+import { CommentsComponent } from './blog/comments/comments.component';
 
 
 @NgModule({
@@ -79,7 +87,15 @@ import { NgbTimepicker, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
       SidebarStatesComponent,
       ClubListStateComponent,
       SlugifyPipe,
-      DateTimePickerComponent
+      DateTimePickerComponent,
+      SummaryPipe,
+      BlogComponent,
+      BlogEditComponent,
+      BlogsComponent,
+      FamousBlogsComponent,
+      BlogCommentComponent,
+      CommentSystemComponent,
+      CommentsComponent
    ],
   imports: [
     BrowserModule,

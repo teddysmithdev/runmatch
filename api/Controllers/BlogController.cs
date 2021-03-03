@@ -28,7 +28,7 @@ namespace api.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet("api/blogs")]
+        [HttpGet("")]
         public async Task<ActionResult<PagedList<BlogDto>>> GetBlogs([FromQuery] BlogParams blogParams)
         {
             var blogs = await _unitOfWork.BlogRepository.GetAllAsync(blogParams);
@@ -37,21 +37,21 @@ namespace api.Controllers
             return Ok(blogsToReturn);
         }
 
-        [HttpGet("api/blogs/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Blog>> Get(int id)
         {
             var blog = await _unitOfWork.BlogRepository.GetAsync(id);
             return blog;
         }
 
-        [HttpGet("api/blogs/user/{userId}")]
+        [HttpGet("user/{userId}")]
         public async Task<ActionResult<List<Blog>>> GetByApplicationUserId(int userId)
         {
             var blogs = await _unitOfWork.BlogRepository.GetAllByUserIdAsync(userId);
             return blogs;
         }
 
-        [HttpPost("api/blogs")]
+        [HttpPost("")]
         public async Task<ActionResult<Blog>> Create(BlogCreate blogCreate)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsername(User.GetUsername());
@@ -71,7 +71,7 @@ namespace api.Controllers
             return Ok(blog);
         }
 
-        [HttpPost("api/blogs/photo-upload")]
+        [HttpPost("/photo-upload")]
         public async Task<ActionResult<Photo>> UploadPhoto(IFormFile file)
         {
             var user = await _unitOfWork.UserRepository.GetUserByUsername(User.GetUsername());
