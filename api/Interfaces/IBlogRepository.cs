@@ -9,12 +9,12 @@ namespace api.Interfaces
 {
     public interface IBlogRepository
     {
-        Task<bool> CreateAsync(BlogCreate blogCreate);
-        Task<bool> UpdateAsync(Blog blog, int applicationUserId);
-        Task<PagedList<Blog>> GetAllAsync(BlogParams blogParams);
-        Task<Blog> GetAsync(int blogId);
-        Task<List<Blog>> GetAllByUserIdAsync(int applicationUserId);
-        Task<List<Blog>> GetAllFamousAsync();
-        Task<int> DeleteAsync(int blogId);
+        Task<bool> CreateBlogAsync(BlogCreate blogCreate, int applicationUserId);
+        Task<bool> UpdateBlogAsync(BlogCreate blogCreate, int applicationUserId);
+        Task<PagedList<Blog>> GetAllBlogsAsync(BlogParams blogParams);
+        Task<Blog> GetBlogAsync(int blogId);
+        Task<List<Blog>> GetAllBlogsByUserIdAsync(BlogParams blogParams, int applicationUserId);
+        Task<List<Blog>> GetAllBlogsFamousAsync();
+        Task<bool> DeleteBlogAsync(int blogId);
     }
 }

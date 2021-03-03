@@ -28,6 +28,7 @@ namespace API.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<BlogPhoto> BlogPhotos { get; set; }
 
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {

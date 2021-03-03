@@ -24,12 +24,34 @@ namespace api.Data
             _context = context;
             _mapper = mapper;
         }
-        public Task<int> DeleteAsync(int blogId)
+
+        public async Task<bool> CreateBlogAsync(BlogCreate blogCreate, int applicationUserId)
         {
-            throw new System.NotImplementedException();
+            var blog = new Blog {
+                Id = blogCreate.Id,
+                Title = blogCreate.Title,
+                Content = blogCreate.Content,
+                PhotoId = blogCreate.PhotoId,
+                AppUserId = applicationUserId
+            };
+            _context.Blogs.Add(blog);
+            var created = await _context.SaveChangesAsync();
+            return created > 0;
+
         }
 
-        public async Task<PagedList<Blog>> GetAllAsync(BlogParams blogParams)
+        public async Task<bool> DeleteBlogAsync(int blogId)
+        {
+            var blog = await _context.Blogs.FirstOrDefaultAsync(u => u.Id == blogId);
+
+            _context.Blogs.Remove(blog);
+
+            var deleted = await _context.SaveChangesAsync();
+
+            return deleted > 0;
+        }
+
+        public async Task<PagedList<Blog>> GetAllBlogsAsync(BlogParams blogParams)
         {
             var query =  _context.Blogs.AsQueryable();
 
@@ -37,32 +59,33 @@ namespace api.Data
                 .AsNoTracking(), blogParams.PageNumber, blogParams.PageSize);
         }
 
-        public async Task<List<Blog>> GetAllByUserIdAsync(int applicationUserId)
+        public async Task<List<Blog>> GetAllBlogsByUserIdAsync(BlogParams blogParams, int applicationUserId)
         {
-            return await _context.Blogs.Include(u => u.AppUser).Where(u => u.AppUserId == applicationUserId).ToListAsync();
+            var query = _context.Blogs.Where(u => u.AppUserId == applicationUserId);
+
+            return await PagedList<Blog>.CreateAsync(
+                query.ProjectTo<Blog>(_mapper.ConfigurationProvider), blogParams.PageNumber, blogParams.PageSize);
+
         }
 
-        public Task<List<Blog>> GetAllFamousAsync()
+        public Task<List<Blog>> GetAllBlogsFamousAsync()
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<Blog> GetAsync(int blogId)
+        public Task<Blog> GetBlogAsync(int blogId)
         {
-            return  await _context.Blogs.FirstOrDefaultAsync(u => u.Id == blogId);
+            return _context.Blogs.FirstOrDefaultAsync(u => u.Id == blogId);
         }
 
-        public async Task<bool> CreateAsync(BlogCreate blog)
+        public async Task<bool> UpdateBlogAsync(BlogCreate blogCreate, int applicationUserId)
         {
-            var mapToBlog = _mapper.Map<Blog>(blog);
-            await _context.Blogs.AddAsync(mapToBlog);
-            var created = await _context.SaveChangesAsync();
-            return created > 0;
-
-        }
-
-        public async Task<bool> UpdateAsync(Blog blog, int applicationUserId)
-        {
+            var blog = new Blog {
+                AppUserId = applicationUserId,
+                Title = blogCreate.Title,
+                Content = blogCreate.Content,
+                PhotoId = blogCreate.PhotoId,
+            };
             _context.Blogs.Update(blog);
             var updated = await _context.SaveChangesAsync();
             return updated > 0;

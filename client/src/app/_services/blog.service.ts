@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Blog } from '../_models/blog';
+import { BlogCreate } from '../_models/blogCreate';
 import { BlogParams } from '../_models/blogParams';
 import { PaginatedResult } from '../_models/pagination';
 
@@ -15,7 +16,7 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  create(model: Blog) : Observable<Blog> {
+  create(model: BlogCreate) : Observable<BlogCreate> {
     return this.http.post<Blog>(this.baseUrl + "", model);
   }
 

@@ -47,13 +47,13 @@ import { LocationResolver } from './_resolvers/location.resolver';
 import { DateTimePickerComponent } from './components/date-time-picker/date-time-picker.component';
 import { NgbTimepicker, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { SummaryPipe } from './_pipes/summary.pipe';
-import { BlogComponent } from './blog/blog/blog.component';
-import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import { BlogsComponent } from './blog/blogs/blogs.component';
 import { FamousBlogsComponent } from './blog/famous-blogs/famous-blogs.component';
 import { BlogCommentComponent } from './blog/blog-comment/blog-comment.component';
 import { CommentSystemComponent } from './blog/comment-system/comment-system.component';
 import { CommentsComponent } from './blog/comments/comments.component';
+import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 
 @NgModule({
@@ -89,7 +89,7 @@ import { CommentsComponent } from './blog/comments/comments.component';
       SlugifyPipe,
       DateTimePickerComponent,
       SummaryPipe,
-      BlogComponent,
+      BlogsComponent,
       BlogEditComponent,
       BlogsComponent,
       FamousBlogsComponent,
@@ -112,7 +112,8 @@ import { CommentsComponent } from './blog/comments/comments.component';
     BsDatepickerModule.forRoot(),
     NgbTimepickerModule,
     NgbTimepickerModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    TypeaheadModule
   ],
   providers: [
     LocationResolver,

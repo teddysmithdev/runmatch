@@ -61,15 +61,5 @@ namespace API.Services
 
             return result;
         }
-
-        public async Task<List<Photo>> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId)
-        {
-            return await _context.Photos.Include(u => u.AppUser).Where(u => u.AppUser.Id == applicationUserId).ToListAsync();
-        }
-
-        public async Task<Photo> GetAsync(int photoId)
-        {
-            return await _context.Photos.Where(u => u.Id == photoId).FirstOrDefaultAsync();
-        }
     }
 }

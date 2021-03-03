@@ -4,6 +4,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { LoginComponent } from './auth/login/login.component';
 import { OnboardComponent } from './auth/onboard/onboard.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
 import { ClubCreateComponent } from './clubs/club-create/club-create.component';
 import { ClubDetailComponent } from './clubs/club-detail/club-detail.component';
 import { ClubListStateComponent } from './clubs/club-list-state/club-list-state.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: "running-club/:id", component: ClubDetailComponent, data:{breadcrumb: {alias: "clubDetail"}} },
   { path: "running-clubs/:state", component: ClubListStateComponent, data:{breadcrumb: {alias: "clubDetail"}} },
   { path: "club-create", component: ClubCreateComponent, canActivate: [AuthGuard] },
+  { path: "blog-dashboard", component: BlogEditComponent, canActivate: [AuthGuard] },
   { path: "messages", component: MessagesComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminPanelComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginComponent },

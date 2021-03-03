@@ -11,7 +11,5 @@ namespace API.Interfaces
     {
         Task<ImageUploadResult> AddPhotoAsync(IFormFile file);
         Task<DeletionResult> DeletePhotoAsync(string publicId);
-        Task<Photo> GetAsync(int photoId);
-        Task<List<Photo>> GetAllByUserIdAsync(PhotoCreate photoCreate, int applicationUserId);
     }
 }

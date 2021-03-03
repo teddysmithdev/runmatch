@@ -7,6 +7,7 @@ namespace API.Interfaces
     {
         IUserRepository UserRepository {get;}
         IMessageRepository MessageRepository {get;}
+        IPhotoRepository PhotoRepository {get;}
         IInviteRepository InviteRepository {get;}
         IClubRepository ClubRepository {get;}
         IEventRepository EventRepository {get; }

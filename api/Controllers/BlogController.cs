@@ -17,14 +17,14 @@ namespace api.Controllers
 {
     public class BlogController : BaseApiController
     {
-        private readonly PhotoService _photoService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IPhotoService _photoService;
 
-        public BlogController(PhotoService photoService, IUnitOfWork unitOfWork, IMapper mapper)
+        public BlogController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService)
         {
-            _mapper = mapper;
             _photoService = photoService;
+            _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
@@ -58,7 +58,7 @@ namespace api.Controllers
 
             if (blogCreate.PhotoId.HasValue)
             {
-                var photo = await _photoService.GetAsync(blogCreate.PhotoId.Value);
+                var photo = await _unitOfWork.PhotoRepository.GetBlogPhotoAsync(blogCreate.PhotoId.Value);
 
                 if (photo.AppUserId != user.Id)
                 {
