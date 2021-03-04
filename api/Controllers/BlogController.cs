@@ -31,7 +31,7 @@ namespace api.Controllers
         [HttpGet("")]
         public async Task<ActionResult<PagedList<BlogDto>>> GetBlogs([FromQuery] BlogParams blogParams)
         {
-            var blogs = await _unitOfWork.BlogRepository.GetAllAsync(blogParams);
+            var blogs = await _unitOfWork.BlogRepository.GetAllBlogsAsync(blogParams);
             var blogsToReturn = _mapper.Map<IEnumerable<BlogDto>>(blogs);
             Response.AddPaginationHeader(blogs.CurrentPage, blogs.PageSize, blogs.TotalCount, blogs.TotalPages);
             return Ok(blogsToReturn);
@@ -40,14 +40,14 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Blog>> Get(int id)
         {
-            var blog = await _unitOfWork.BlogRepository.GetAsync(id);
+            var blog = await _unitOfWork.BlogRepository.GetBlogAsync(id);
             return blog;
         }
 
         [HttpGet("user/{userId}")]
-        public async Task<ActionResult<List<Blog>>> GetByApplicationUserId(int userId)
+        public async Task<ActionResult<List<Blog>>> GetAllByApplicationUserId(BlogParams blogParams, int userId)
         {
-            var blogs = await _unitOfWork.BlogRepository.GetAllByUserIdAsync(userId);
+            var blogs = await _unitOfWork.BlogRepository.GetAllBlogsByUserIdAsync(blogParams, userId);
             return blogs;
         }
 
@@ -66,7 +66,7 @@ namespace api.Controllers
                 }
             }
 
-            var blog = await _unitOfWork.BlogRepository.CreateAsync(blogCreate);
+            var blog = await _unitOfWork.BlogRepository.CreateBlogAsync(blogCreate, user.Id);
 
             return Ok(blog);
         }
@@ -80,14 +80,14 @@ namespace api.Controllers
 
             if (result.Error != null) return BadRequest(result.Error.Message);
 
-            var photoCreate = new Photo
+            var photoCreate = new PhotoCreate
             {
                 PublicId = result.PublicId,
-                Url = result.SecureUrl.AbsoluteUri,
+                ImageUrl = result.SecureUrl.AbsoluteUri,
                 Description = file.FileName
             };
 
-            user.Photos.Add(photoCreate);
+            var photoInsert = _unitOfWork.PhotoRepository.InsertBlogPhotoAsync(photoCreate, user.Id);
 
             return Ok();
         }

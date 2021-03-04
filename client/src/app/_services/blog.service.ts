@@ -16,25 +16,26 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  create(model: BlogCreate) : Observable<BlogCreate> {
-    return this.http.post<Blog>(this.baseUrl + "", model);
+  createBlog(model: BlogCreate) : Observable<BlogCreate> {
+    return this.http.post<Blog>(this.baseUrl + "blog/", model);
   }
 
   getBlogs(blogParams: BlogParams) : any {
     let params = this.getPaginationHeaders(blogParams.pageNumber, blogParams.pageSize);
+    return this.getPaginatedResult<Blog[]>(this.baseUrl, params);
   }
 
-  get(blogId: number) : Observable<Blog> {
-    return this.http.get<Blog>(`/Blog/${blogId}`);
+  getBlog(id: number) : Observable<Blog> {
+    return this.http.get<Blog>(this.baseUrl + "blog/" + id);
   }
 
-  getByApplicationUserId(applicationUserId: number) : Observable<Blog[]> {
-    return this.http.get<Blog[]>(`/Blog/user/${applicationUserId}`);
+  getByApplicationUserId(id: number) : Observable<Blog[]> {
+    return this.http.get<Blog[]>(this.baseUrl + "blog/" + id);
   }
 
-  getMostFamous() : Observable<Blog[]> {
-    return this.http.get<Blog[]>(`/Blog/famous`);
-  }
+  // getMostFamous() : Observable<Blog[]> {
+  //   return this.http.get<Blog[]>(`/Blog/famous`);
+  // }
 
   delete(blogId: number) : Observable<number> {
     return this.http.delete<number>(`/Blog/${blogId}`);
@@ -49,7 +50,7 @@ export class BlogService {
 
   private getPaginatedResult<T>(url, params) {
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(url + "clubs", { observe: 'response', params }).pipe(
+    return this.http.get<T>(url + "blog", { observe: 'response', params }).pipe(
       map(response => {
         paginatedResult.result = response.body;
         if (response.headers.get('Pagination') != null) {

@@ -52,7 +52,7 @@ export class BlogEditComponent implements OnInit {
     });
 
     if (!!blogId && blogId !== -1) {
-      this.blogService.get(blogId).subscribe(blog => {
+      this.blogService.getBlog(blogId).subscribe(blog => {
         this.updateForm(blog);
       });
     }
@@ -76,7 +76,7 @@ export class BlogEditComponent implements OnInit {
       this.blogForm.get("content").value,
       this.blogForm.get("photoId").value
     );
-    this.blogService.create(blogCreate).subscribe(createdBlog => {
+    this.blogService.createBlog(blogCreate).subscribe(createdBlog => {
       this.updateForm(createdBlog);
       this.toastr.info("Blog saved.");
     })

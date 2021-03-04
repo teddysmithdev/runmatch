@@ -28,10 +28,8 @@ namespace api.Data
         public async Task<bool> CreateBlogAsync(BlogCreate blogCreate, int applicationUserId)
         {
             var blog = new Blog {
-                Id = blogCreate.Id,
                 Title = blogCreate.Title,
                 Content = blogCreate.Content,
-                PhotoId = blogCreate.PhotoId,
                 AppUserId = applicationUserId
             };
             _context.Blogs.Add(blog);
@@ -84,7 +82,7 @@ namespace api.Data
                 AppUserId = applicationUserId,
                 Title = blogCreate.Title,
                 Content = blogCreate.Content,
-                PhotoId = blogCreate.PhotoId,
+                // PhotoId = blogCreate.PhotoId,
             };
             _context.Blogs.Update(blog);
             var updated = await _context.SaveChangesAsync();
