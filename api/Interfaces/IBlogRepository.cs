@@ -13,7 +13,7 @@ namespace api.Interfaces
         Task<bool> UpdateBlogAsync(BlogCreate blogCreate, int applicationUserId);
         Task<PagedList<Blog>> GetAllBlogsAsync(BlogParams blogParams);
         Task<Blog> GetBlogAsync(int blogId);
-        Task<List<Blog>> GetAllBlogsByUserIdAsync(BlogParams blogParams, int applicationUserId);
+        Task<List<Blog>> GetAllBlogsByUsernameAsync(BlogParams blogParams, string username);
         Task<List<Blog>> GetAllBlogsFamousAsync();
         Task<bool> DeleteBlogAsync(int blogId);
     }

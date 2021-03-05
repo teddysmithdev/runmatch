@@ -24,7 +24,7 @@ namespace API.Data
         public IPhotoRepository PhotoRepository => new PhotoRepository(_context, _photoService);
         public IInviteRepository InviteRepository => new InviteRepository(_context);
         public IClubRepository ClubRepository => new ClubRepository(_context, _mapper);
-        public IEventRepository EventRepository => new EventRepository(_context);
+        public IEventRepository EventRepository => new EventRepository(_context, _mapper);
         public IBlogRepository BlogRepository => new BlogRepository(_context, _mapper);
         public IBlogCommentRepository BlogCommentRepository => new BlogCommentRepository(_context, _mapper);
 

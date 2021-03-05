@@ -4,7 +4,9 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { LoginComponent } from './auth/login/login.component';
 import { OnboardComponent } from './auth/onboard/onboard.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { BlogDashboardComponent } from './blog/blog-dashboard/blog-dashboard.component';
 import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
+import { BlogPhotosComponent } from './blog/blog-photos/blog-photos.component';
 import { BlogsComponent } from './blog/blogs/blogs.component';
 import { ClubCreateComponent } from './clubs/club-create/club-create.component';
 import { ClubDetailComponent } from './clubs/club-detail/club-detail.component';
@@ -13,6 +15,7 @@ import { ClubListComponent } from './clubs/club-list/club-list.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { HomeComponent } from './home/home.component';
 import { InvitesComponent } from './invites/invites.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -34,8 +37,11 @@ const routes: Routes = [
   { path: "running-club", component: ClubListComponent, resolve: {location: LocationResolver}, pathMatch: 'full' },
   { path: "running-club/:id", component: ClubDetailComponent, data:{breadcrumb: {alias: "clubDetail"}} },
   { path: "running-clubs/:state", component: ClubListStateComponent, data:{breadcrumb: {alias: "clubDetail"}} },
+  { path: "running/events/:id", component: EventDetailComponent },
   { path: "club-create", component: ClubCreateComponent, canActivate: [AuthGuard] },
+  { path: "blog-dashboard", component: BlogDashboardComponent, canActivate: [AuthGuard] },
   { path: "blog-dashboard/:id", component: BlogEditComponent, canActivate: [AuthGuard] },
+  { path: 'blog-photo', component: BlogPhotosComponent, canActivate: [AuthGuard]},
   { path: "blog", component: BlogsComponent},
   { path: "messages", component: MessagesComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminPanelComponent, canActivate: [AdminGuard] },

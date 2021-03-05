@@ -54,6 +54,9 @@ import { CommentSystemComponent } from './blog/comment-system/comment-system.com
 import { CommentsComponent } from './blog/comments/comments.component';
 import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { BlogDashboardComponent } from './blog/blog-dashboard/blog-dashboard.component';
+import { BlogPhotosComponent } from './blog/blog-photos/blog-photos.component';
+import { EventDetailComponent } from './events/event-detail/event-detail.component';
 
 
 @NgModule({
@@ -95,7 +98,10 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
       FamousBlogsComponent,
       BlogCommentComponent,
       CommentSystemComponent,
-      CommentsComponent
+      CommentsComponent,
+      BlogDashboardComponent,
+      BlogPhotosComponent,
+      EventDetailComponent
    ],
   imports: [
     BrowserModule,

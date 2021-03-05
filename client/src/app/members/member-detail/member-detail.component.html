@@ -1,159 +1,35 @@
 <div class="main-container">
-  <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a>
-            </li>
-            <li class="breadcrumb-item"><a href="pages-app.html">App Pages</a>
-            </li>
-
-            <li class="breadcrumb-item active" aria-current="page">Item Detail</li>
-          </ol>
-        </div>
-        <!--end of col-->
-      </div>
-      <!--end of row-->
-    </div>
-    <!--end of container-->
-  </nav>
-  <section class="bg-white space-sm">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col">
-          <div class="media align-items-center">
-            <img alt="Image" src="{{member.photoUrl || 'assets/img/graphic-product-sidekick-thumb.jpg'}}" class="avatar avatar-lg avatar-square rounded" />
-            <div class="media-body">
-              <h1 class="mb-0">{{member.userName}}</h1>
-              <h2 class="lead mb-2">{{member.city}}, {{member.state}}</h2>
-              <div class="d-flex align-items-center">
-                <span class="badge badge-secondary mr-3">Ultra-Marathoner</span>
-                <ul class="list-inline text-small d-inline-block">
-                  <li class="list-inline-item"><i class="icon-thumbs-up"></i> 214</li>
-                  <li class="list-inline-item"><i class="icon-message"></i> 6</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--end of col-->
-        <div class="col-auto">
-          <div class="btn-group mb-2">
-            <button type="button" class="btn btn-success btn-l" (click)="addInvite(member)" >+Invite To Run</button>
-            <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split dropdown-toggle-no-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="icon-dots-three-horizontal"></i>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm">
-              <a class="dropdown-item" href="#">Message</a>
-              <a class="dropdown-item" href="#">Block</a>
-              <a class="dropdown-item" href="#">Report</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <button type="button" class="btn btn-success btn-l" (click)="showChat($event)">Send Message</button>  
-        </div>
-        <!--end of col-->
-      </div>
-      <!--end of row-->
-    </div>
-    <!--end of container-->
-  </section>
-  <!--end of section-->
   <section class="space-sm">
     <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-12 col-md-8 col-lg-7">
-          <app-member-messages [username]="member.userName" *ngIf="chatToggle" #memberTabs></app-member-messages>
-          <!--end of video cover-->
-          <h5 class="mb-4">Introduction</h5>
-          <article>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <a href="#">labore et dolore</a> magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
-            </p>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-              sit aspernatur aut odit aut fugit
-            </p>
-            <p>
-              Rerum facilis est et expedita distinctio. Nam
-              <abbr title="Hyper Text Markup Language">HTML</abbr>tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
-              aut rerum necessitatibus saepe eveniet ut.
-            </p>
-            <ul>
-              <li>
-                Temporibus autem quibusdam
-              </li>
-              <li>
-                Saepe eveniet ut et voluptates repudiandae sint
-              </li>
-              <li>
-                Nemo enim ipsam voluptatem quia voluptas
-              </li>
-              <li>
-                Atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-              </li>
-            </ul>
-          </article>
-          <hr>
-          
-        </div>
-        <!--end of col-->
-        <div class="col-12 col-md-4">
-          <div class="card">
-            <div class="card-header d-flex justify-content-between">
-              <div>
-                <span class="h6">Recent photos</span>
-              </div>
-              <a href="#">View all &rsaquo;</a>
+      <div class="row">
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+          <div class="card card-profile-large text-center">
+            <div class="card-header">
+              <img alt="Image" src="assets/img/photo-beach.jpg" class="bg-image" />
             </div>
             <div class="card-body">
-              <div class="image-gallery image-gallery-lg row">
-                <div class="col-6">
-                  <div *ngFor="let photo of member.photos">
-                  <img alt="Image" src="{{photo.url}}" class="mb-3" />
-                  </div>
+              <a>
+                <img alt="{{member.userName}}" src="{{member.photoUrl || 'assets/img/graphic-product-sidekick-thumb.jpg'}}" class="avatar avatar-lg" />
+              </a>
+              <div class="my-3">
+                <div class="mb-2">
+                  <h5 class="mb-0">{{member.userName}}</h5>
+                  <span class="text-muted">Ultra-Marathoner</span>
                 </div>
-               
+                <span class="text-small text-muted"><i class="icon-location"></i> {{member.city}}, {{member.state}}</span>
+              </div>
+              <div>
+                <button class="btn btn-outline-primary" (click)="addInvite(member)"><i class="icon-add-user"></i> Run Invite</button>
+                <button class="btn btn-outline-primary" (click)="showChat($event)"><i class="icon-mail"></i>
+                </button>
               </div>
             </div>
           </div>
           <!-- end card -->
           <div class="card">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <div class="d-flex justify-content-between">
-                  <div><i class="icon-text-document mr-1"></i> Created</div>
-                  <span>{{member.created | timeago}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="d-flex justify-content-between">
-                  <div><i class="icon-edit mr-1"></i> Last Active</div>
-                  <span>{{member.lastActive | timeago}}</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="d-flex justify-content-between">
-                  <div><i class="icon-thumbs-up mr-1"></i> Likes</div>
-                  <span>214</span>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <div class="d-flex justify-content-between">
-                  <div><i class="icon-share mr-1"></i> Shares</div>
-                  <span>52</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="card">
             <div class="card-header d-flex justify-content-between">
               <div>
-                <span class="h6">Contributors</span>
+                <span class="h6">Followers</span>
               </div>
               <a href="#">View all &rsaquo;</a>
             </div>
@@ -207,113 +83,205 @@
           <div class="card">
             <div class="card-header d-flex justify-content-between">
               <div>
-                <span class="h6">Related Products</span>
+                <span class="h6">Recent photos</span>
               </div>
               <a href="#">View all &rsaquo;</a>
             </div>
             <div class="card-body">
-              <ul class="list-unstyled list-spacing-sm">
-
-                <li>
-                  <div class="media">
-                    <a href="#">
-                      <img alt="Image" src="assets/img/graphic-product-bench-thumb.jpg" class="avatar avatar-square rounded mr-3" />
-                    </a>
-                    <div class="media-body">
-                      <a href="#">
-                        <span class="h6">Bench</span>
-                      </a>
-                      <span class="badge badge-secondary">Productivity</span>
-                      <div class="text-muted">
-                        <ul class="list-inline">
-                          <li class="list-inline-item">
-                            <small><i class="icon-heart"></i> 373</small>
-                          </li>
-                          <li class="list-inline-item">
-                            <small><i class="icon-message"></i> 62</small>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="media">
-                    <a href="#">
-                      <img alt="Image" src="assets/img/graphic-product-kin-thumb.jpg" class="avatar avatar-square rounded mr-3" />
-                    </a>
-                    <div class="media-body">
-                      <a href="#">
-                        <span class="h6">Kin</span>
-                      </a>
-                      <span class="badge badge-secondary">Lifestyle</span>
-                      <div class="text-muted">
-                        <ul class="list-inline">
-                          <li class="list-inline-item">
-                            <small><i class="icon-heart"></i> 84</small>
-                          </li>
-                          <li class="list-inline-item">
-                            <small><i class="icon-message"></i> 21</small>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="media">
-                    <a href="#">
-                      <img alt="Image" src="assets/img/graphic-product-paydar-thumb.jpg" class="avatar avatar-square rounded mr-3" />
-                    </a>
-                    <div class="media-body">
-                      <a href="#">
-                        <span class="h6">Paydar</span>
-                      </a>
-                      <span class="badge badge-secondary">Productivity</span>
-                      <div class="text-muted">
-                        <ul class="list-inline">
-                          <li class="list-inline-item">
-                            <small><i class="icon-heart"></i> 253</small>
-                          </li>
-                          <li class="list-inline-item">
-                            <small><i class="icon-message"></i> 19</small>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-                <li>
-                  <div class="media">
-                    <a href="#">
-                      <img alt="Image" src="assets/img/graphic-product-pipeline-thumb.jpg" class="avatar avatar-square rounded mr-3" />
-                    </a>
-                    <div class="media-body">
-                      <a href="#">
-                        <span class="h6">pipeline.js</span>
-                      </a>
-                      <span class="badge badge-secondary">Development</span>
-                      <div class="text-muted">
-                        <ul class="list-inline">
-                          <li class="list-inline-item">
-                            <small><i class="icon-heart"></i> 84</small>
-                          </li>
-                          <li class="list-inline-item">
-                            <small><i class="icon-message"></i> 25</small>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-
-              </ul>
+              <div class="image-gallery image-gallery-lg row">
+                <div class="col">
+                  <img alt="Image" src="assets/img/photo-man-laptop.jpg" class="mb-3" />
+                  <img alt="Image" src="assets/img/photo-man-meeting.jpg" />
+                </div>
+                <div class="col-6">
+                  <img alt="Image" src="assets/img/photo-woman-cafe.jpg" />
+                </div>
+              </div>
             </div>
           </div>
+          <!--end of card-->
+          <div class="card card-borderless bg-secondary">
+            <a class="card-body" href="#">
+              <div class="d-flex justify-content-between mb-3">
+                <img alt="Image" src="assets/img/logo-w-gradient.svg" />
+                <span class="title-decorative">Sponsor</span>
+              </div>
+              <span class="h6">A robust suite of styled elements and pages</span>
+            </a>
+          </div>
           <!-- end card -->
+        </div>
+        <!--end of col-->
+        <div class="col-12 col-md-8">
+          <app-member-messages [username]="member.userName" *ngIf="chatToggle" #memberTabs></app-member-messages>
+          <div class="card">
+            <div class="card-header card-header-borderless d-flex justify-content-between">
+              <small class="text-muted"><i class="icon-add-to-list mr-1"></i> Added a new item</small>
+              <small class="text-muted">A few moments ago</small>
+            </div>
+            <div class="card-body">
+              <div class="media">
+                <img alt="Image" src="assets/img/graphic-product-kin-thumb.jpg" class="avatar avatar-square" />
+                <div class="media-body">
+                  <span class="h5 mb-0">Kin</span>
+                  <span>The digital fashion assistant</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <div>
+                <button class="btn btn-sm btn-outline-secondary">Comment</button>
+                <button class="btn btn-sm btn-outline-primary"><i class="icon-thumbs-up"></i>
+                </button>
+              </div>
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-thumbs-up"></i> 12</li>
+                  <li class="list-inline-item"><i class="icon-share-alternative"></i> 8</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--end of card-->
+          <div class="card">
+            <div class="card-header card-header-borderless d-flex justify-content-between">
+              <small class="text-muted"><i class="icon-add-to-list mr-1"></i> Added a new item</small>
+              <small class="text-muted">3 days ago</small>
+            </div>
+            <div class="card-body">
+              <div class="media">
+                <img alt="Image" src="assets/img/graphic-product-pipeline-thumb.jpg" class="avatar avatar-square" />
+                <div class="media-body">
+                  <span class="h5 mb-0">pipeline.js</span>
+                  <span>Snappy UI interaction library with flexible API</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <div>
+                <button class="btn btn-sm btn-outline-secondary">Comment</button>
+                <button class="btn btn-sm btn-outline-primary"><i class="icon-thumbs-up"></i>
+                </button>
+              </div>
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-thumbs-up"></i> 21</li>
+                  <li class="list-inline-item"><i class="icon-share-alternative"></i> 4</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--end of card-->
+          <div class="card">
+            <div class="card-header card-header-borderless d-flex justify-content-between">
+              <small class="text-muted"><i class="icon-message mr-1"></i> Commented on <a href="#">Modd - Guron</a>
+              </small>
+              <small class="text-muted">5 days ago</small>
+            </div>
+            <div class="card-body">
+              <p>
+                Lovely review, couldn’t have said it better myself, though I’m about to. You see here’s the thing about that&hellip; <a href="#">Read more</a>
+              </p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <div>
+                <button class="btn btn-sm btn-outline-secondary">Comment</button>
+                <button class="btn btn-sm btn-outline-primary"><i class="icon-thumbs-up"></i>
+                </button>
+              </div>
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-thumbs-up"></i> 1</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--end of card-->
+          <div class="card">
+            <div class="card-header card-header-borderless d-flex justify-content-between">
+              <small class="text-muted"><i class="icon-add-user mr-1"></i> Joined the group <a href="#">Bench</a>
+              </small>
+              <small class="text-muted">5 days ago</small>
+            </div>
+            <div class="card-body">
+              <div class="media">
+                <a href="#" class="mr-4">
+                  <img alt="Image" src="assets/img/graphic-product-bench-thumb.jpg" class="avatar-square avatar avatar-lg" />
+                </a>
+                <div class="media-body">
+                  <div class="d-flex justify-content-between mb-3">
+                    <div>
+                      <a href="#" class="mb-1">
+                        <h4>Bench</h4>
+                      </a>
+                      <span>A creative coworking space</span>
+                    </div>
+                  </div>
+                  <a class="badge badge-secondary badge-pill mb-2" href="#">Brooklyn, NY</a>
+                  <div class="text-small">
+                    <ul class="list-inline">
+                      <li class="list-inline-item"><i class="icon-user"></i> 48</li>
+                      <li class="list-inline-item"><i class="icon-calendar"></i> 9</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <div>
+                <button class="btn btn-sm btn-outline-secondary">Comment</button>
+                <button class="btn btn-sm btn-outline-primary"><i class="icon-thumbs-up"></i>
+                </button>
+              </div>
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-thumbs-up"></i> 1</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--end of card-->
+          <div class="card">
+            <div class="card-header card-header-borderless d-flex justify-content-between">
+              <small class="text-muted"><i class="icon-share-alternative"></i> Shared <a href="#">Ben Dillon's</a> video</small>
+              <small class="text-muted">A week ago</small>
+            </div>
+            <div class="card-body">
+              <div class="media">
+                <div class="video-cover rounded w-50">
+                  <img alt="Image" src="assets/img/photo-woman-sand.jpg" class="bg-image" />
+                  <div class="video-play-icon">
+                    <i class="icon-controller-play"></i>
+                  </div>
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" data-src="https://www.youtube.com/embed/oYqvpjKJZkU?autoplay=1&amp;mute=1&amp;showinfo=0&amp;rel=0" allowfullscreen></iframe>
+                  </div>
+                </div>
+                <!--end of video cover-->
+                <div class="media-body">
+                  <span class="h5 mb-2">Sportiv Brand Presentation</span>
+                  <span>Here’s a brief description or comment of the video that has been shared</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <div>
+                <button class="btn btn-sm btn-outline-secondary">Comment</button>
+                <button class="btn btn-sm btn-outline-primary"><i class="icon-thumbs-up"></i>
+                </button>
+              </div>
+              <div class="text-small">
+                <ul class="list-inline">
+                  <li class="list-inline-item"><i class="icon-thumbs-up"></i> 6</li>
+                  <li class="list-inline-item"><i class="icon-share-alternative"></i> 2</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--end of card-->
+          <div class="text-center mt-5">
+            <button class="btn btn-outline-secondary">Show more</button>
+          </div>
         </div>
         <!--end of col-->
       </div>
@@ -321,51 +289,3 @@
     </div>
     <!--end of container-->
   </section>
-  <!--end of section-->
-  <footer class="footer-short">
-    <div class="container">
-      <hr>
-      <nav class="row justify-content-between align-items-center">
-        <div class="col-auto">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <a href="#">
-                <img alt="Image" src="assets/img/logo-gray.svg" />
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">Overview</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">Documentation</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">Changelog</a>
-            </li>
-          </ul>
-        </div>
-        <!--end of col-->
-        <div class="col-auto text-sm-right">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <a href="#"><i class="socicon-twitter"></i></a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#"><i class="socicon-facebook"></i></a>
-            </li>
-          </ul>
-        </div>
-        <!--end of col-->
-      </nav>
-      <!--end of row-->
-      <div class="row">
-        <div class="col">
-          <small>&copy; 2019 Medium Rare All Rights Reserved</small>
-        </div>
-        <!--end of col-->
-      </div>
-      <!--end of row-->
-    </div>
-    <!--end of container-->
-  </footer>
-</div>

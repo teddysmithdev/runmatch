@@ -44,10 +44,10 @@ namespace api.Controllers
             return blog;
         }
 
-        [HttpGet("user/{userId}")]
-        public async Task<ActionResult<List<Blog>>> GetAllByApplicationUserId(BlogParams blogParams, int userId)
+        [HttpGet("user/{username}")]
+        public async Task<ActionResult<List<Blog>>> GetAllBlogsByUsername(BlogParams blogParams, string username)
         {
-            var blogs = await _unitOfWork.BlogRepository.GetAllBlogsByUserIdAsync(blogParams, userId);
+            var blogs = await _unitOfWork.BlogRepository.GetAllBlogsByUsernameAsync(blogParams, username);
             return blogs;
         }
 

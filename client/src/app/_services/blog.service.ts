@@ -29,8 +29,8 @@ export class BlogService {
     return this.http.get<Blog>(this.baseUrl + "blog/" + id);
   }
 
-  getByApplicationUserId(id: number) : Observable<Blog[]> {
-    return this.http.get<Blog[]>(this.baseUrl + "blog/" + id);
+  getByBlogByUsername(username: string) : Observable<Blog[]> {
+    return this.http.get<Blog[]>(this.baseUrl + "blog/" + username);
   }
 
   // getMostFamous() : Observable<Blog[]> {

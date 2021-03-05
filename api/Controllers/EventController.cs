@@ -2,116 +2,86 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Dtos;
+using api.Helpers;
 using API.Domain;
 using API.Dtos;
 using API.Extenstions;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class EventController : Controller
+    public class EventController : BaseApiController
     {
-        private readonly IEventRepository _eventRepository;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
         public EventController(
-            IEventRepository eventRepository, 
             IMapper mapper,
             IUnitOfWork unitOfWork)
         {
-            _eventRepository = eventRepository;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
         [HttpGet("api/events")]
-        public async Task<IActionResult> GetEvents()
+        public async Task<ActionResult<PagedList<Event>>> GetEvents([FromQuery]EventParams eventParams)
         {
-            return Ok( await _eventRepository.GetEventsAsync());
+            var events = await _unitOfWork.EventRepository.GetAllEventsAsync(eventParams);
+            var eventsToReturn = _mapper.Map<IEnumerable<Event>>(events);
+            Response.AddPaginationHeader(events.CurrentPage, events.PageSize, events.TotalCount, events.TotalPages);
+            return Ok(eventsToReturn);
         }
 
-        // [HttpGet("api/clubs/{clubId}")]
-        // public async Task<IActionResult> GetClub([FromRoute] int clubId)
-        // {
-        //     var club = await _clubRepository.GetClubByIdAsync(clubId);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Event>> Get(int id)
+        {
+            var eventt = await _unitOfWork.EventRepository.GetEventByIdAsync(id);
+            return eventt;
+        }
 
-        //     if (club == null)
-        //         return NotFound();
+        [HttpPost("")]
+        [Authorize]
+        public async Task<IActionResult> Create([FromBody] EventCreateDto eventCreate)
+        {
+            if (eventCreate == null)
+            {
+                return BadRequest();
+            }
 
-        //     return Ok(club);
-        // }
+            var username = User.GetUsername();
+            var user = await _unitOfWork.UserRepository.GetUserByUsername(username);
 
-        // [HttpPost("api/clubs")]
-        // public async Task<IActionResult> Create([FromBody] CreateClubDto clubRequest)
-        // {
-        //     if (clubRequest == null)
-        //     {
-        //         return BadRequest();
-        //     }
+            var eventt = new Event 
+            {
+                Title = eventCreate.Title,
+                Location = eventCreate.Location,
+                City = eventCreate.City,
+                State = eventCreate.State,
+                Category = eventCreate.Category,
+                Date = eventCreate.Date,
+            };
 
-        //     var username = User.GetUsername();
-        //     var user = await _unitOfWork.UserRepository.GetUserByUsername(username);
+            await _unitOfWork.EventRepository.CreateEventAsync(eventt);
 
+            return Ok(eventt);
+        }
+
+        [HttpPost("{id}/attend")]
+        public async Task<ActionResult> AddAttendee(int eventId)
+        {
+            var sourceUserId = User.GetUserId();
+            var result = await _unitOfWork.EventRepository.AddAttendee(eventId, sourceUserId);
+
+            if (result == false) return BadRequest("Failed to attend");
             
-        //     var club = new Club 
-        //     { 
-        //         Name = clubRequest.Name,
-        //         City = clubRequest.City,
-        //         State = clubRequest.State,
-        //         Intro = clubRequest.Intro,
-        //         AppUser = user,
-        //         AppUserID = user.Id,
-        //         Events = 
-        //         new List<Event>
-        //     {
-        //         new Event {
-        //             Title = clubRequest.Events.Title,
-        //             Location = clubRequest.Events.Location,
-        //             Date = clubRequest.Events.Date, 
-        //             }
-        //         }
-        //     };
-
-            
-        //     await _clubRepository.CreateClubAsync(club);
-
-        //     var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.ToUriComponent()}";
-        //     var locationUri = baseUrl + "/api/club/" + club.Name;
-
-        //     var response = new Club { Name = club.Name };
-        //     return Created(locationUri, response);
-        // }
-
-        // [HttpPut("api/clubs/{clubId}")]
-        // public async Task<IActionResult> Update([FromRoute]int clubId, [FromBody] Club request)
-        // {
-        //     var club = new Club
-        //     {
-        //         Id = clubId,
-        //         Name = request.Name
-        //     };
-
-        //     var updated = await _clubRepository.UpdateClubAsync(club);
-
-        //     if(updated)
-        //         return Ok();
-            
-        //     return NotFound();
-        // }
-
-        // [HttpDelete("api/clubs/{clubId}")]
-        // public async Task<IActionResult> Delete([FromRoute]int clubId)
-        // {
-        //     var deleted = await _clubRepository.DeleteClubAsync(clubId);
-
-        //     if(deleted)
-        //         return NoContent();
-            
-        //     return NotFound();
-        // }
+            return Ok();
+        }
     }
+
 }

@@ -13,6 +13,7 @@ namespace API.Domain
         public string Intro { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public string Category { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public int AppUserID {get; set;}
         public AppUser AppUser {get; set;}

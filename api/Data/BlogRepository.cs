@@ -57,9 +57,9 @@ namespace api.Data
                 .AsNoTracking(), blogParams.PageNumber, blogParams.PageSize);
         }
 
-        public async Task<List<Blog>> GetAllBlogsByUserIdAsync(BlogParams blogParams, int applicationUserId)
+        public async Task<List<Blog>> GetAllBlogsByUsernameAsync(BlogParams blogParams, string username)
         {
-            var query = _context.Blogs.Where(u => u.AppUserId == applicationUserId);
+            var query = _context.Blogs.Where(u => u.Username == username);
 
             return await PagedList<Blog>.CreateAsync(
                 query.ProjectTo<Blog>(_mapper.ConfigurationProvider), blogParams.PageNumber, blogParams.PageSize);
