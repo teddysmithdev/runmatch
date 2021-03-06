@@ -57,6 +57,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { BlogDashboardComponent } from './blog/blog-dashboard/blog-dashboard.component';
 import { BlogPhotosComponent } from './blog/blog-photos/blog-photos.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { BlogComponent } from './blog/blog.component';
 
 
 @NgModule({
@@ -93,8 +94,8 @@ import { EventDetailComponent } from './events/event-detail/event-detail.compone
       DateTimePickerComponent,
       SummaryPipe,
       BlogsComponent,
+      BlogComponent,
       BlogEditComponent,
-      BlogsComponent,
       FamousBlogsComponent,
       BlogCommentComponent,
       CommentSystemComponent,

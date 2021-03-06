@@ -4,12 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos;
 using api.Helpers;
-using API.Domain;
-using API.Dtos;
+using API.Entities;
 using API.Extenstions;
 using API.Helpers;
 using API.Interfaces;
-using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +27,7 @@ namespace API.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet("api/events")]
+        [HttpGet("")]
         public async Task<ActionResult<PagedList<Event>>> GetEvents([FromQuery]EventParams eventParams)
         {
             var events = await _unitOfWork.EventRepository.GetAllEventsAsync(eventParams);
@@ -64,7 +62,7 @@ namespace API.Controllers
                 City = eventCreate.City,
                 State = eventCreate.State,
                 Category = eventCreate.Category,
-                Date = eventCreate.Date,
+                Date = eventCreate.Date
             };
 
             await _unitOfWork.EventRepository.CreateEventAsync(eventt);
@@ -73,13 +71,13 @@ namespace API.Controllers
         }
 
         [HttpPost("{id}/attend")]
-        public async Task<ActionResult> AddAttendee(int eventId)
+        public async Task<ActionResult> AddAttendee(int id)
         {
             var sourceUserId = User.GetUserId();
-            var result = await _unitOfWork.EventRepository.AddAttendee(eventId, sourceUserId);
+            var result = await _unitOfWork.EventRepository.AddAttendee(id, sourceUserId);
 
             if (result == false) return BadRequest("Failed to attend");
-            
+
             return Ok();
         }
     }

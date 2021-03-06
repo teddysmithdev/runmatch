@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using api.Dtos;
 using api.Entities;
 using API.Domain;
 using API.Dtos;
@@ -28,6 +29,8 @@ namespace API.Helpers
             CreateMap<Club, ClubDto>();
             CreateMap<ClubDto, ClubDto>();
             CreateMap<Blog, Blog>();
+            CreateMap<Event, Event>();
+            CreateMap<Blog, BlogDto>();
         }
     }
 }

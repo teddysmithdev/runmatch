@@ -6,6 +6,7 @@ using api.Entities;
 using api.Helpers;
 using API.Data;
 using API.Domain;
+using API.Entities;
 using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
@@ -49,7 +50,7 @@ namespace API.Data
 
         public async Task<PagedList<Event>> GetAllEventsAsync(EventParams eventParams)
         {
-            var query = _context.Blogs.AsQueryable();
+            var query = _context.Events.AsQueryable();
 
             return await PagedList<Event>.CreateAsync(query.ProjectTo<Event>(_mapper.ConfigurationProvider)
                 .AsNoTracking(), eventParams.PageNumber, eventParams.PageSize);
@@ -90,6 +91,7 @@ namespace API.Data
                 attendance = new EventAttendee
                 {
                     AppUser = user,
+                    AppUserId = user.Id.ToString(),
                     Event = eventt,
                     IsHost = false
                 };

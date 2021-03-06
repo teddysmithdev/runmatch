@@ -67,6 +67,12 @@ currentUser$ = this.currentUserSource.asObservable();
 
   getIPAddress() : Observable<IpAddress> {  
     return this.http.get<IpAddress>("https://ipinfo.io?token=63d5ada815b74c");  
-  }  
+  }
+  
+  public isLoggedIn() {
+    const currentUser = this.currentUserSource;
+    const isLoggedIn = !!currentUser;
+    return isLoggedIn;
+  }
 
 }

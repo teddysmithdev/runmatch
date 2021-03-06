@@ -34,28 +34,26 @@
 
           <li class="col-12 col-md-6 col-lg-4" *ngFor="let blog of blogs">
             <div class="card card-lg">
-              <a href="#">
+              <a [routerLink]="['/blog', blog.id]" routerLinkActive="router-link-active" >
                 <img class="card-img-top" src="assets/img/photo-team-desk.jpg" alt="Starting Up - A Candid Documentary">
               </a>
               <div class="card-body">
-                <a href="#">
+                <a [routerLink]="['/blog', blog.id]" >
                   <h4 class="card-title mb-3">{{blog.title}}</h4>
                 </a>
-                <p class="card-text">What it’s really like trying to convert an idea into a business.</p>
+                <p class="card-text">{{blog.content}}</p>
               </div>
               <div class="card-footer card-footer-borderless">
                 <div class="media blog-post-author">
                   <img alt="Image" src="assets/img/avatar-male-1.jpg" class="avatar avatar-xs" />
                   <div class="media-body">
-                    <small>Cameron Vasquez</small>
-                    <small>28th February 2018 &bull; 4 min read</small>
+                    <small>{{blog.username}}</small>
+                    <small>{{blog.publishDate | date}}</small>
                   </div>
                 </div>
               </div>
             </div>
           </li>
-
-         
         </ul>
         <!--end of row-->
         <div class="row justify-content-center">
@@ -64,7 +62,7 @@
             [boundaryLinks]="true" 
             [totalItems]="pagination?.totalItems"
             [itemsPerPage]="pagination?.itemsPerPage"
-            [(ngModel)]="pagination.currentPage"
+          
             (pageChanged)="pageChanged($event)"
             previousText="&lsaquo;" 
             nextText="&rsaquo;" 

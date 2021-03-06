@@ -25,7 +25,7 @@ export class BlogService {
     return this.getPaginatedResult<Blog[]>(this.baseUrl, params);
   }
 
-  getBlog(id: number) : Observable<Blog> {
+  getBlog(id: any) : Observable<Blog> {
     return this.http.get<Blog>(this.baseUrl + "blog/" + id);
   }
 

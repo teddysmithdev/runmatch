@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using API.Entities;
 
-namespace API.Domain
+namespace API.Entities
 {
     public class Club
     {

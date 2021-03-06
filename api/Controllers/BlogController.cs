@@ -66,9 +66,9 @@ namespace api.Controllers
                 }
             }
 
-            var blog = await _unitOfWork.BlogRepository.CreateBlogAsync(blogCreate, user.Id);
+            var blog = await _unitOfWork.BlogRepository.CreateBlogAsync(blogCreate, user);
 
-            return Ok(blog);
+            return Ok();
         }
 
         [HttpPost("/photo-upload")]

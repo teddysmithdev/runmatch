@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using API.Domain;
+using API.Entities;
 
 namespace API.Dtos.ClubDto
 {

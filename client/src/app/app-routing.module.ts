@@ -7,6 +7,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { BlogDashboardComponent } from './blog/blog-dashboard/blog-dashboard.component';
 import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
 import { BlogPhotosComponent } from './blog/blog-photos/blog-photos.component';
+import { BlogComponent } from './blog/blog.component';
 import { BlogsComponent } from './blog/blogs/blogs.component';
 import { ClubCreateComponent } from './clubs/club-create/club-create.component';
 import { ClubDetailComponent } from './clubs/club-detail/club-detail.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: "blog-dashboard/:id", component: BlogEditComponent, canActivate: [AuthGuard] },
   { path: 'blog-photo', component: BlogPhotosComponent, canActivate: [AuthGuard]},
   { path: "blog", component: BlogsComponent},
+  { path: "blog/:id", component: BlogComponent},
   { path: "messages", component: MessagesComponent, canActivate: [AuthGuard] },
   { path: "admin", component: AdminPanelComponent, canActivate: [AdminGuard] },
   { path: "login", component: LoginComponent },

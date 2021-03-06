@@ -6,6 +6,7 @@ using api.Entities;
 using api.Helpers;
 using api.Interfaces;
 using API.Data;
+using API.Entities;
 using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
@@ -25,12 +26,14 @@ namespace api.Data
             _mapper = mapper;
         }
 
-        public async Task<bool> CreateBlogAsync(BlogCreate blogCreate, int applicationUserId)
+        public async Task<bool> CreateBlogAsync(BlogCreate blogCreate, AppUser user)
         {
             var blog = new Blog {
                 Title = blogCreate.Title,
                 Content = blogCreate.Content,
-                AppUserId = applicationUserId
+                Username = user.UserName,
+                AppUserId = user.Id,
+                AppUser = user
             };
             _context.Blogs.Add(blog);
             var created = await _context.SaveChangesAsync();

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using api.Entities;
 using API.Entities;
 
-namespace API.Domain
+namespace API.Entities
 {
     public class Event
     {
@@ -18,7 +18,7 @@ namespace API.Domain
         public bool IsCancelled { get; set; }
         public DateTime Date { get; set; }
         public ICollection<EventAttendee> Attendees { get; set; }
-        public int ClubId { get; set; }
+        public int? ClubId { get; set; }
         public Club Club { get; set; }
     }
 }

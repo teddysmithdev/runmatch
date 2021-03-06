@@ -22,13 +22,11 @@ export class ClubDetailComponent implements OnInit {
     private route: ActivatedRoute, 
     private toastr: ToastrService,
     private eventService: EventService,
-    private titleService: Title,
     private bcService: BreadcrumbService) { }
 
   ngOnInit() {
     this.getClub();
     this.getEvents();
-    this.titleService.setTitle(this.club.name);
   }
 
   getClub() {

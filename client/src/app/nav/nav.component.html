@@ -28,13 +28,16 @@
               <a [routerLink]="['/running-club']" class="nav-link" routerLinkActive='active'>Running Clubs</a>
             </li>
             <li class="nav-item">
+              <a [routerLink]="['/blog']" class="nav-link" routerLinkActive='active'>Blog</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
               <a [routerLink]="['/messages']" class="nav-link" routerLinkActive='active'><i class="far fa-envelope"></i></a>
             </li>
             <li class="nav-item">
               <a [routerLink]="['/invites']" class="nav-link"routerLinkActive='active'><i class="fas fa-user-plus"></i></a>
             </li>
-          </ul>
-          <ul class="navbar-nav">
             <li class="nav-item" *ngIf="(currentUser$ | async) == null">
               <a [routerLink]="['/login']" class="nav-link">Sign-in</a>
             </li>

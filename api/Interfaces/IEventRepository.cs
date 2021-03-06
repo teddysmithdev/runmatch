@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Helpers;
 using API.Domain;
+using API.Entities;
 using API.Helpers;
 
 namespace API.Interfaces

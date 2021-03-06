@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Blog } from '../_models/blog';
+import { BlogService } from '../_services/blog.service';
 
 @Component({
   selector: 'app-blog',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
+  blog: Blog;
+
+  constructor(
+    private blogService: BlogService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService
+  ) {
+
+   }
 
   ngOnInit(): void {
+
+  }
+
+  getBlog() {
+    this.blogService.getBlog(this.route.snapshot.queryParamMap.get('id'))
+    .subscribe(blog => {
+      this.blog = blog;
+    })
   }
 
 }

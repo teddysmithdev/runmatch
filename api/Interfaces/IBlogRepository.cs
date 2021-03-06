@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using api.Dtos;
 using api.Entities;
 using api.Helpers;
+using API.Entities;
 using API.Helpers;
 
 namespace api.Interfaces
 {
     public interface IBlogRepository
     {
-        Task<bool> CreateBlogAsync(BlogCreate blogCreate, int applicationUserId);
+        Task<bool> CreateBlogAsync(BlogCreate blogCreate, AppUser user);
         Task<bool> UpdateBlogAsync(BlogCreate blogCreate, int applicationUserId);
         Task<PagedList<Blog>> GetAllBlogsAsync(BlogParams blogParams);
         Task<Blog> GetBlogAsync(int blogId);

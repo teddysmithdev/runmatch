@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { Blog } from 'src/app/_models/blog';
 import { BlogParams } from 'src/app/_models/blogParams';
 import { Pagination } from 'src/app/_models/pagination';
 import { BlogService } from 'src/app/_services/blog.service';
@@ -13,7 +14,7 @@ import { BlogService } from 'src/app/_services/blog.service';
 export class BlogsComponent implements OnInit {
   blogParams: BlogParams = new BlogParams();
   pagination: Pagination;
-  blogs: any;
+  blogs: Blog[];
 
   constructor(
     private blogService: BlogService
@@ -31,7 +32,7 @@ export class BlogsComponent implements OnInit {
   
   loadBlogs() {
     this.blogService.getBlogs(this.blogParams).subscribe(pagedBlogs => {
-      this.blogs = pagedBlogs;
+      this.blogs = pagedBlogs.result;
     });
   }
 
