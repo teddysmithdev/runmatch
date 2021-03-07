@@ -23,6 +23,6 @@ export class BlogCommentService {
   }
 
   getAllBlogComments(blogId: number) : Observable<BlogComment[]> {
-    return this.http.get<BlogComment[]>(this.baseUrl + 'BlogComment');
+    return this.http.get<BlogComment[]>(this.baseUrl + 'BlogComment/' + blogId);
   }
 }

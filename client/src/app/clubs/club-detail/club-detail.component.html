@@ -17,8 +17,8 @@
             </nav>
           </div>
           <div>
-            <h1 class="mb-0">Bench Coworking</h1>
-            <h2 class="lead mb-3">A Brooklyn-based creative collective</h2>
+            <h1 class="mb-0">{{club.name}}</h1>
+            <h2 class="lead mb-3">{{club.city}}, {{club.state}}</h2>
             <div class="d-flex align-items-center">
               <span class="badge badge-secondary mr-3">Productivity</span>
               <ul class="list-inline text-small d-inline-block">
@@ -31,33 +31,35 @@
           <h5 class="mb-4">Overview</h5>
           <article>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <a href="#">labore et dolore</a> magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.
+              {{club.intro}}
             </p>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-              sit aspernatur aut odit aut fugit
-            </p>
-            <p>
-              Rerum facilis est et expedita distinctio. Nam
-              <abbr title="Hyper Text Markup Language">HTML</abbr>tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis
-              aut rerum necessitatibus saepe eveniet ut.
-            </p>
-            <ul>
-              <li>
-                Temporibus autem quibusdam
-              </li>
-              <li>
-                Saepe eveniet ut et voluptates repudiandae sint
-              </li>
-              <li>
-                Nemo enim ipsam voluptatem quia voluptas
-              </li>
-              <li>
-                Atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-              </li>
-            </ul>
           </article>
+          <h5 class="mb-4 mt-4">Upcoming Events</h5>
+          <ul class="row mb-3 feature-list">
+
+            <li class="col-12 col-md-12 col-lg-12" *ngFor="let event of events">
+              <div class="card">
+                <a href="#">
+                  <img class="card-img-top" src="assets/img/photo-team-desk.jpg" alt="Starting Up - A Candid Documentary">
+                </a>
+                <div class="card-body small">
+                  <a href="#">
+                    <h4 class="card-title mb-3">{{event.title}}</h4>
+                  </a>
+                  <p class="card-text">What it’s really like trying to convert an idea into a business.</p>
+                </div>
+                <div class="card-footer card-footer-borderless">
+                  <div class="media blog-post-author">
+                    <img alt="Image" src="assets/img/avatar-male-1.jpg" class="avatar avatar-xs" />
+                    <div class="media-body">
+                      <small>Cameron Vasquez</small>
+                      <small>28th February 2018 &bull; 4 min read</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
           <hr>
           <h5 class="mb-4">Discussion</h5>
           <div class="card">

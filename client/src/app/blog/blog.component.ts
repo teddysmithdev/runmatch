@@ -18,15 +18,15 @@ export class BlogComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService
   ) {
-
+    
    }
 
   ngOnInit(): void {
-
+    this.getBlog();
   }
 
   getBlog() {
-    this.blogService.getBlog(this.route.snapshot.queryParamMap.get('id'))
+    this.blogService.getBlog(this.route.snapshot.paramMap.get('id'))
     .subscribe(blog => {
       this.blog = blog;
     })

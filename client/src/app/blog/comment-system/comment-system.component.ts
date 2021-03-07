@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { take } from 'rxjs/operators';
 import { BlogComment } from 'src/app/_models/blogComment';
 import { BlogCommentViewModel } from 'src/app/_models/blogCommentView';
+import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { BlogCommentService } from 'src/app/_services/blog-comment.service';
 
@@ -12,6 +14,7 @@ import { BlogCommentService } from 'src/app/_services/blog-comment.service';
 export class CommentSystemComponent implements OnInit {
 
   @Input() blogId: number;
+  user: User;
 
   standAloneComment: BlogCommentViewModel;
   blogComments: BlogComment[];
@@ -22,14 +25,14 @@ export class CommentSystemComponent implements OnInit {
     private blogCommentService: BlogCommentService,
     public accountService: AccountService
   ) { 
-    
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   ngOnInit(): void {
     this.blogCommentService.getAllBlogComments(this.blogId).subscribe(blogComments => {
 
-      if (this.accountService.isLoggedIn()) {
-        // this.initComment(this.accountService.currentUserValue.username);
+      if (this.user) {
+        this.initComment(this.user.username);
       }
 
       this.blogComments = blogComments;
