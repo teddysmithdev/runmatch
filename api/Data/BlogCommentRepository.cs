@@ -22,7 +22,12 @@ namespace api.Data
         }
         public async Task<bool> CreateAsync(BlogCommentCreate blogComment)
         {
-            var blogCommentToReturn = _mapper.Map<BlogComment>(blogComment);
+            var blogCommentToReturn = new BlogComment
+            {
+                Id = blogComment.BlogCommentId,
+                BlogId = blogComment.BlogId,
+                Content = blogComment.Content
+            };
             await _context.BlogComments.AddAsync(blogCommentToReturn);
             var created = await _context.SaveChangesAsync();
             return created > 0;

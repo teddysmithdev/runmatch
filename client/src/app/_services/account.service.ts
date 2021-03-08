@@ -69,10 +69,24 @@ currentUser$ = this.currentUserSource.asObservable();
     return this.http.get<IpAddress>("https://ipinfo.io?token=63d5ada815b74c");  
   }
   
-  public isLoggedIn() {
-    const currentUser = this.currentUserSource;
-    const isLoggedIn = !!currentUser;
-    return isLoggedIn;
+  public givenUserIsLoggedIn(username: string) {
+    return this.isLoggedIn() && this.currentUser(username);
+  }
+
+  public isLoggedIn() : Observable<boolean> {
+    return this.currentUser$.pipe(map(user => {
+      if (user) return true;
+
+      return false;
+    }))
+  }
+
+  private currentUser(username: string) : Observable<boolean> {
+    return this.currentUser$.pipe(map(user => {
+      if (user.username == username) return true;
+
+      return false;
+    }))
   }
 
 }

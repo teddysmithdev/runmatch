@@ -1,4 +1,4 @@
-<form #commentForm="ngForm" (ngSubmit)="onSubmit()">
+<!-- <form>
     
     <div class="form-group">
         <textarea
@@ -36,4 +36,61 @@
         Reset
     </button>
 
-</form>
+</form> -->
+
+
+<section class="space-sm">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-12 col-md-12">
+          <div class="card">
+            <div class="card-header bg-secondary">
+              <button class="btn btn-secondary" type="button" data-target="#comment-reply" data-toggle="collapse" aria-expanded="false" aria-controls="comment-reply">Post a reply</button>
+            </div>
+            <div class="collapse" id="comment-reply">
+              <form class="card-body" #commentForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <textarea 
+                  class="form-control from-control-lg" 
+                  id="comment-reply-text" 
+                  placeholder="Type your reply here"
+                  name="commentContent"
+                  #userCommentContent="ngModel"
+                  [(ngModel)]="comment.content"
+                  [ngClass]="{'is-invalid' : userCommentContent.errors && userCommentContent.touched}"
+                  rows="3"
+                  required
+                  minlength="10"
+                  maxlength="300">
+                  ></textarea>
+                </div>
+                <div class="mb-2">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="notify-reply" id="check-notify">
+                    <label class="custom-control-label text-small" for="check-notify">Notify me when someone replies</label>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <button type="submit" class="btn btn-success mr-3">Submit reply</button>
+                  <a href="#comment-reply" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply">Cancel</a>
+                </div>
+                <div *ngIf="!!userCommentContent.errors?.required" class="invalid-feedback">
+                    You can't save an empty comment
+                </div>
+        
+                <div *ngIf="!!userCommentContent.errors?.minlength" class="invalid-feedback">
+                    Must be between 10-300 characters
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!--end of col-->
+    
+
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>

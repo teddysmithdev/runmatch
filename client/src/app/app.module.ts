@@ -49,7 +49,6 @@ import { NgbTimepicker, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { SummaryPipe } from './_pipes/summary.pipe';
 import { BlogsComponent } from './blog/blogs/blogs.component';
 import { FamousBlogsComponent } from './blog/famous-blogs/famous-blogs.component';
-import { BlogCommentComponent } from './blog/blog-comment/blog-comment.component';
 import { CommentSystemComponent } from './blog/comment-system/comment-system.component';
 import { CommentsComponent } from './blog/comments/comments.component';
 import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
@@ -98,7 +97,6 @@ import { CommentBoxComponent } from './blog/comment-box/comment-box.component';
       BlogComponent,
       BlogEditComponent,
       FamousBlogsComponent,
-      BlogCommentComponent,
       CommentSystemComponent,
       CommentsComponent,
       BlogDashboardComponent,
