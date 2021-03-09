@@ -31,6 +31,7 @@ namespace API.Data
         public DbSet<BlogPhoto> BlogPhotos { get; set; }
         public DbSet<EventAttendee> EventAttendees { get; set; }
         public DbSet<UserFollowing> UserFollowings { get; set; }
+        public DbSet<ClubComment> ClubComments { get; set; }
 
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
@@ -76,6 +77,11 @@ namespace API.Data
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
+
+            builder.Entity<ClubComment>()
+                .HasOne(a => a.Club)
+                .WithMany(c => c.Comments)
+                .OnDelete(DeleteBehavior.Cascade);
                
 
             builder.Entity<UserInvite>()

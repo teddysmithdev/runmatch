@@ -31,6 +31,10 @@ namespace API.Helpers
             CreateMap<Blog, Blog>();
             CreateMap<Event, Event>();
             CreateMap<Blog, BlogDto>();
+            CreateMap<ClubComment, ClubCommentDto>()
+                .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.Author.UserName))
+                .ForMember(d => d.Username, o => o.MapFrom(s => s.Author.UserName))
+                .ForMember(d => d.Image, o => o.MapFrom(s => s.Author.Photos.FirstOrDefault(x => x.isMain).Url));
         }
     }
 }

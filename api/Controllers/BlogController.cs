@@ -45,7 +45,7 @@ namespace api.Controllers
         }
 
         [HttpGet("user/{username}")]
-        public async Task<ActionResult<List<Blog>>> GetAllBlogsByUsername(BlogParams blogParams, string username)
+        public async Task<ActionResult<List<Blog>>> GetAllBlogsByUsername([FromForm]BlogParams blogParams, string username)
         {
             var blogs = await _unitOfWork.BlogRepository.GetAllBlogsByUsernameAsync(blogParams, username);
             return blogs;

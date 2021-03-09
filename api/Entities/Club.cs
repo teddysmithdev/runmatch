@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using api.Entities;
 using API.Entities;
 
 namespace API.Entities
@@ -18,5 +19,6 @@ namespace API.Entities
         public int AppUserID {get; set;}
         public AppUser AppUser {get; set;}
         public ICollection<Event> Events {get; set;}
+        public ICollection<ClubComment> Comments { get; set; } = new List<ClubComment>();
     }
 }
