@@ -17,6 +17,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { EventListComponent } from './events/event-list/event-list.component';
 import { HomeComponent } from './home/home.component';
 import { InvitesComponent } from './invites/invites.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -38,7 +39,8 @@ const routes: Routes = [
   { path: "running-club", component: ClubListComponent, resolve: {location: LocationResolver}, pathMatch: 'full' },
   { path: "running-club/:id", component: ClubDetailComponent, data:{breadcrumb: {alias: "clubDetail"}} },
   { path: "running-clubs/:state", component: ClubListStateComponent, data:{breadcrumb: {alias: "clubDetail"}} },
-  { path: "running/events/:id", component: EventDetailComponent },
+  { path: "running-events", component: EventListComponent },
+  { path: "running-event/:id", component: EventDetailComponent },
   { path: "club-create", component: ClubCreateComponent, canActivate: [AuthGuard] },
   { path: "blog-dashboard", component: BlogDashboardComponent, canActivate: [AuthGuard] },
   { path: "blog-dashboard/:id", component: BlogEditComponent, canActivate: [AuthGuard] },

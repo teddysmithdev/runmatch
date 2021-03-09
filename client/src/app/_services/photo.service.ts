@@ -16,7 +16,7 @@ export class PhotoService {
   }
 
   getPhotoById() {
-    return this.http.get<Photo[]>(this.baseUrl)
+    return this.http.get<Photo[]>(this.baseUrl + "/photo")
   }
 
   setMainPhoto(photoId: number) {

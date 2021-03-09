@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser'
 import { ToastrService } from 'ngx-toastr';
 import { Club } from 'src/app/_models/club';
-import { Event } from 'src/app/_models/event';
 import { ClubService } from 'src/app/_services/club.service';
 import { EventService } from 'src/app/_services/event.service';
 import { BreadcrumbService } from 'xng-breadcrumb';
+import { EventtParams } from 'src/app/_models/eventtParams';
+import { PaginatedResult } from 'src/app/_models/pagination';
+import { Eventt } from 'src/app/_models/eventt';
 
 @Component({
   selector: 'app-club-detail',
@@ -14,9 +16,9 @@ import { BreadcrumbService } from 'xng-breadcrumb';
   styleUrls: ['./club-detail.component.css']
 })
 export class ClubDetailComponent implements OnInit {
-
+  eventtParams: EventtParams = new EventtParams();
   club: Club;
-  events: Event[];
+  events: PaginatedResult<Eventt[]>;
 
   constructor(private clubService: ClubService, 
     private route: ActivatedRoute, 
@@ -39,7 +41,7 @@ export class ClubDetailComponent implements OnInit {
   }
 
   getEvents() {
-    this.eventService.getEvents().subscribe((e:Event[]) => {
+    this.eventService.getEvents(this.eventtParams).subscribe(e => {
       this.events = e;
     }, error => {
       this.toastr.error(error);

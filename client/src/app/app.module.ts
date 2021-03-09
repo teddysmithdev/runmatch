@@ -58,6 +58,7 @@ import { BlogPhotosComponent } from './blog/blog-photos/blog-photos.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { BlogComponent } from './blog/blog.component';
 import { CommentBoxComponent } from './blog/comment-box/comment-box.component';
+import { EventListComponent } from './events/event-list/event-list.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { CommentBoxComponent } from './blog/comment-box/comment-box.component';
       BlogDashboardComponent,
       BlogPhotosComponent,
       EventDetailComponent,
-      CommentBoxComponent
+      CommentBoxComponent,
+      EventListComponent
    ],
   imports: [
     BrowserModule,

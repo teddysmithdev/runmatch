@@ -1,0 +1,102 @@
+<section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-auto mb-5">
+          <form class="mb-4">
+            <input class="form-control" placeholder="Search" type="text" name="search-table" />
+          </form>
+              <!--end of card-->
+        </div>
+        <!--end of col-->
+        <div class="col">
+          <div class="card card-sm">
+            <div class="card-header d-flex bg-secondary justify-content-between align-items-center">
+              <div>
+                <h6>Find A Running Race</h6>
+              </div>
+              <form class="d-flex align-items-center">
+                <span class="mr-2 text-muted text-small text-nowrap">Sort by:</span>
+                <select class="custom-select">
+                  <option value="alpha">Alphabetical</option>
+                  <option value="old-new" selected>Newest</option>
+                  <option value="new-old">Popular</option>
+                  <option value="recent">Recently Updated</option>
+                </select>
+              </form>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" *ngFor="let eventt of events">
+                <div class="media align-items-center">
+                  <a href="#" class="mr-4">
+                    <img alt="Image" src="assets/img/graphic-product-sidekick-thumb.jpg" class="rounded avatar avatar-lg" />
+                  </a>
+                  <div class="media-body">
+                    <div class="d-flex justify-content-between mb-2">
+                      <div>
+                        <a [routerLink]="['/running-events', eventt.name | slugify]" [queryParams]="{id: eventt.id}"class="mb-1">
+                          <h4>{{eventt.title}}</h4>
+                        </a>
+                        <span>{{eventt.city}}, {{eventt.id}}</span>
+                      </div>
+                      <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="SidekickButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="icon-dots-three-horizontal"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="SidekickButton">
+                          <a class="dropdown-item" href="#">Save</a>
+                          <a class="dropdown-item" href="#">Share</a>
+                          <a class="dropdown-item" href="#">Comment</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Report</a>
+                        </div>
+                      </div>
+                    </div>
+                    <a class="badge badge-secondary badge-pill mb-2" href="#">RoadRunner</a>
+                    <div class="text-small">
+                      <ul class="list-inline">
+                        <li class="list-inline-item"><i class="icon-heart"></i> 221</li>
+                        <li class="list-inline-item"><i class="icon-message"></i> 14</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        <div class="d-flex justify-content-center">
+          <pagination 
+            [boundaryLinks]="true" 
+            [totalItems]="pagination?.totalItems"
+            [itemsPerPage]="pagination?.itemsPerPage"
+            [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)"
+            previousText="&lsaquo;" 
+            nextText="&rsaquo;" 
+            firstText="&laquo;" 
+            lastText="&raquo;">
+          </pagination>
+        </div>
+        </div>
+        <!--end of col-->
+        <div class="col-lg-3">
+          <div data-sticky="top">
+            <div class="card">
+              <div class="card-body">
+                <h6>Can't find a club? Start one. ✌</h6>
+               
+                  <div class="form-group mb-2">
+                  </div>
+                  <button type="submit" [routerLink]='["/club-create"]' class="btn btn-block btn-primary">Start a running club</button>
+              
+              </div>
+            </div>
+            <app-sidebar-states></app-sidebar-states>
+          </div>
+          <!-- end of sticky-->
+        </div>
+        <!--end of col-->
+      </div>
+      <!--end of row-->
+    </div>
+    <!--end of container-->
+  </section>
