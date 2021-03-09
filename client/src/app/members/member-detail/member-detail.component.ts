@@ -2,10 +2,13 @@ import { AbstractType, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
+import { Follower } from 'src/app/_models/follower';
 import { Member } from 'src/app/_models/member';
 import { Message } from 'src/app/_models/message';
+import { Pagination } from 'src/app/_models/pagination';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
+import { FollowService } from 'src/app/_services/follow.service';
 import { MemberService } from 'src/app/_services/member.service';
 import { MessageService } from 'src/app/_services/message.service';
 
@@ -18,12 +21,19 @@ export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs', {static: true}) memberTabs: any;
   member: Member;
   messages: Message[] = [];
+  followers: Follower[];
   activeTab: any;
   user: User;
   chatToggle: boolean = false;
+  predicate = 'followedBy';
+  pageNumber = 1;
+  pageSize = 5;
+  pagination: Pagination;
+
 
   constructor(private memberService: MemberService, 
     private accountService: AccountService,
+    private followerService: FollowService,
     private router: Router,
     private route: ActivatedRoute, 
     private toastr: ToastrService, 
@@ -34,6 +44,7 @@ export class MemberDetailComponent implements OnInit {
 
   ngOnInit() {
     this.loadMember();
+    this.loadFollowers();
     // this.messageService.createHubConnection(this.user, this.member.userName);
     this.route.queryParams.subscribe(params => {
       params.tab ? this.selectTab(params.tab) : this.selectTab(0);
@@ -43,6 +54,13 @@ export class MemberDetailComponent implements OnInit {
   loadMessages() {
     this.messageService.getMessageThread(this.member.userName).subscribe(messages => {
       this.messages = messages;
+    })
+  }
+
+  loadFollowers() {
+    this.followerService.getFollowers(this.predicate, this.pageNumber, this.pageSize).subscribe(f => {
+      this.followers = f.result
+      console.log(f.result);
     })
   }
 
@@ -68,8 +86,18 @@ export class MemberDetailComponent implements OnInit {
 
   addInvite(member: Member) {
     this.memberService.addInvite(member.userName).subscribe(() => {
+      this.toastr.success('You have invited ' + member.userName);
+    }, error => {
+      this.toastr.error(error);
     })
-    this.toastr.success('You have invited ' + member.userName);
+  }
+
+  addFollow(member: Member) {
+    this.followerService.addFollow(member.userName).subscribe(() => {
+      this.toastr.success("You followed " + member.userName);
+    }, error => {
+      this.toastr.error(error);
+    })
   }
 
   selectTab(tabId: number) {

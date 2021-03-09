@@ -1,6 +1,6 @@
-<div class="container">
+<!-- <div class="container">
 
-    <div *ngFor="let comment of comments">
+    <div>
 
         <div class="row mb-3 d-block comment-box">
 
@@ -13,7 +13,7 @@
                 </blockquote>
 
                 <app-comment-box
-                    *ngIf="(!!comment.isEditable && (accountService.givenUserIsLoggedIn(comment.username))) || !!comment.isReplying"
+                    *ngIf="(!!comment.isEditable && (accountService.givenUserIsLoggedIn(comment.username)) | async) || !!comment.isReplying"
                     [comment]="comment"
                     (commentSaved)="onCommentSaved($event, comment)"
                     >    
@@ -22,17 +22,17 @@
                 <div class="button-box" *ngIf="!comment.isEditable && !comment.isReplying">
 
                     <button 
-                        *ngIf="!comment.isEditable && !!accountService.givenUserIsLoggedIn(comment.username) | async" 
+                        *ngIf="!comment.isEditable && (!!accountService.givenUserIsLoggedIn(comment.username) | async)" 
                         class="btn btn-sm btn-info mr-1"
                         (click)="editComment(comment)">Edit</button>
                     
                     <button 
-                        *ngIf="!comment.isReplying && !!accountService.isLoggedIn() | async" 
+                        *ngIf="!comment.isReplying && (!!accountService.isLoggedIn() | async)" 
                         class="btn btn-sm btn-primary mr-1"
                         (click)="replyComment(comment)">Reply</button>
 
                     <button 
-                        *ngIf="!comment.deleteConfirm && !!accountService.givenUserIsLoggedIn(comment.username) | async" 
+                        *ngIf="!comment.deleteConfirm && (!!accountService.givenUserIsLoggedIn(comment.username) | async)" 
                         class="btn btn-sm btn-danger"
                         (click)="showDeleteConfirm(comment)">Delete</button>
 
@@ -52,28 +52,36 @@
 
     </div>
 
-</div>
+</div> -->
 
 <ul class="list-group list-group-flush list-group-comments">
-
-    <li class="list-group-item py-4">
+    <li class="list-group-item py-4" *ngFor="let comment of comments">
       <div class="media">
         <img alt="Image" src="assets/img/avatar-female-2.jpg" class="avatar avatar-sm" />
         <div class="media-body">
           <div class="mb-2">
-            <span class="h6 mb-0">Kelly Fraiser</span>
+            <span class="h6 mb-0">{{comment.username}}</span>
             <span class="text-muted">Making awesome products</span>
           </div>
           <p>
-            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+            {{comment.content}}
           </p>
+          <app-comment-box
+          *ngIf="(!!comment.isEditable && (accountService.givenUserIsLoggedIn(comment.username)) | async) || !!comment.isReplying"
+          [comment]="comment"
+          (commentSaved)="onCommentSaved($event, comment)"
+          >    
+        </app-comment-box>
 
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center" *ngIf="!comment.isEditable && !comment.isReplying">
             <div class="mr-2">
-              <button class="btn btn-sm btn-outline-primary">Reply</button>
+              <button 
+              class="btn btn-sm btn-outline-primary"
+              (click)="replyComment(comment)"
+              >Reply</button>
               <button class="btn btn-sm btn-outline-primary"><i class="icon-thumbs-up"></i>&nbsp;(2)</button>
             </div>
-            <small class="text-muted">1st Dec 2017 • 10:15am</small>
+            <small class="text-muted">{{comment.updateDate | date:'medium'}}</small>
           </div>
         </div>
       </div>

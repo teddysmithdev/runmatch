@@ -27,6 +27,7 @@ namespace API.Data
         public IEventRepository EventRepository => new EventRepository(_context, _mapper);
         public IBlogRepository BlogRepository => new BlogRepository(_context, _mapper);
         public IBlogCommentRepository BlogCommentRepository => new BlogCommentRepository(_context, _mapper);
+        public IFollowRepository FollowRepository => new FollowerRepository(_context);
 
         public async Task<bool> Complete()
         {

@@ -65,11 +65,11 @@ export class BlogDashboardComponent implements OnInit {
   }
 
   editBlog(blogId: number) {
-    this.router.navigate([`/dashboard/${blogId}`]);
+    this.router.navigate([`/blog-dashboard/${blogId}`]);
   }
 
   createBlog() {
-    this.router.navigate(['/dashboard/-1']);
+    this.router.navigate(['/blog-dashboard/-1']);
   }
 
 }

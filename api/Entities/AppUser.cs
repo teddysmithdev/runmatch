@@ -22,6 +22,8 @@ namespace API.Entities
         public ICollection<Photo> Photos { get; set; }
         public ICollection<UserInvite> InvitedByUsers { get; set; }
         public ICollection<UserInvite> InvitedUsers { get; set; }
+        public ICollection <UserFollowing> Followings { get; set; }
+        public ICollection <UserFollowing> Followers { get; set; }
         public ICollection<Message> MessagesSent { get; set; }
         public ICollection<Message> MessagesRecieved { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }

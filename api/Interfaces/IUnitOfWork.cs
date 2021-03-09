@@ -13,6 +13,7 @@ namespace API.Interfaces
         IEventRepository EventRepository {get; }
         IBlogRepository BlogRepository {get; }
         IBlogCommentRepository BlogCommentRepository {get;}
+        IFollowRepository FollowRepository {get; }
         Task<bool> Complete();
         bool HasChanges();
     }

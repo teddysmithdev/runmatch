@@ -30,7 +30,7 @@ export class BlogService {
   }
 
   getByBlogByUsername(username: string) : Observable<Blog[]> {
-    return this.http.get<Blog[]>(this.baseUrl + "blog/" + username);
+    return this.http.get<Blog[]>(this.baseUrl + "blog/user/" + username);
   }
 
   // getMostFamous() : Observable<Blog[]> {
