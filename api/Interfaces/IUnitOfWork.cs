@@ -14,6 +14,7 @@ namespace API.Interfaces
         IBlogRepository BlogRepository {get; }
         IBlogCommentRepository BlogCommentRepository {get;}
         IFollowRepository FollowRepository {get; }
+        IClubCommentRepository ClubCommentRepository {get; }
         Task<bool> Complete();
         bool HasChanges();
     }
